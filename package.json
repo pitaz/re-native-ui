@@ -1,0 +1,8 @@
+{
+  "name": "react-native-ui-library",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "example"
+  ]
+}
