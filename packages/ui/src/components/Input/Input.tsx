@@ -8,13 +8,14 @@ import {
 } from 'react-native';
 import { useTheme } from '../../theme/ThemeContext';
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
-  rightElement?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  leftIcon?: React.ReactNode;
 }
 
-export const Input: React.FC<InputProps> = ({ label, error, style, rightElement, ...props }) => {
+export const Input: React.FC<InputProps> = ({ label, error, style, rightIcon, leftIcon, ...props }) => {
   const theme = useTheme();
 
   const styles = StyleSheet.create({
@@ -40,7 +41,7 @@ export const Input: React.FC<InputProps> = ({ label, error, style, rightElement,
       flexDirection: 'row',
       alignItems: 'center',
     },
-    inputWithRightElement: {
+    inputWithrightIcon: {
       flex: 1,
       borderWidth: 1,
       borderColor: error ? 'red' : theme.colors.border,
@@ -56,7 +57,15 @@ export const Input: React.FC<InputProps> = ({ label, error, style, rightElement,
       color: 'red',
       fontSize: theme.fontSizes.sm,
     },
-    rightElement: {
+    leftIcon: {
+      position: 'absolute',
+      left: 12,
+      top: 0,
+      bottom: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    rightIcon: {
       position: 'absolute',
       right: 12,
       top: 0,
@@ -70,14 +79,16 @@ export const Input: React.FC<InputProps> = ({ label, error, style, rightElement,
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.inputContainer}>
+        <View style={styles.leftIcon}>
+          {leftIcon && leftIcon}
+        </View>
         <TextInput 
-          style={[rightElement ? styles.inputWithRightElement : styles.input, style]} 
+          style={[rightIcon ? styles.inputWithrightIcon : styles.input, style]} 
           placeholderTextColor={theme.colors.muted} 
           {...props} 
         />
-        {/* rightElement should be positioned absolutely on the right side of the input */}
-        <View style={styles.rightElement}>
-          {rightElement && rightElement}
+        <View style={styles.rightIcon}>
+          {rightIcon && rightIcon}
         </View>
       </View>
       {error && <Text style={styles.error}>{error}</Text>}

@@ -10,3 +10,7 @@ export * from "./components/Button/Button";
 export * from "./components/Input";
 export * from "./components/PasswordInput";
 export * from "./components/TextArea";
+export * from "./components/form/Form";
+export * from "./components/form/ControlledInput";
+export * from "./components/form/ControlledSelect";
+export * from "./components/Select/Select";
