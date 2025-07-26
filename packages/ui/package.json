@@ -27,6 +27,8 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "react-hook-form": "^7.61.1"
+    "react-hook-form": "^7.61.1",
+    "yup": "^1.6.1",
+    "@hookform/resolvers": "^3.9.0"
   }
 }

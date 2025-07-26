@@ -1109,12 +1109,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hookform/resolvers@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-5.2.0.tgz#4b34934a1d9dd790af20fb3fa7c8e415046918e4"
-  integrity sha512-3YI+VqxJQH6ryRWG+j3k+M19Wf37LeSKJDg6Vdjq6makLOqZGYn77iTaYLMLpVi/uHc1N6OTCmcxJwhOQV979g==
-  dependencies:
-    "@standard-schema/utils" "^0.3.0"
+"@hookform/resolvers@^3.9.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
+  integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
 
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
@@ -1744,6 +1742,11 @@
     metro-config "^0.82.2"
     metro-runtime "^0.82.2"
 
+"@react-native/new-app-screen@0.80.2":
+  version "0.80.2"
+  resolved "https://registry.yarnpkg.com/@react-native/new-app-screen/-/new-app-screen-0.80.2.tgz#7aff77dd896969fb58df57ce35353d2570872a34"
+  integrity sha512-cszaO1s1WJNBSkvb9bYGxv9CYcHDbGMMmtgemhpe1HyzcoE2kKp9FLn6aAUxIP+aZ2RBP1Zya1Wt8oRuCyTNjQ==
+
 "@react-native/normalize-colors@0.80.2":
   version "0.80.2"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.80.2.tgz#99e7c0ec99780a5eaf39e262dd19728792f41972"
@@ -1845,11 +1848,6 @@
   integrity sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==
   dependencies:
     "@sinonjs/commons" "^3.0.0"
-
-"@standard-schema/utils@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@standard-schema/utils/-/utils-0.3.0.tgz#3d5e608f16c2390c10528e98e59aef6bf73cae7b"
-  integrity sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==
 
 "@types/babel__core@^7.1.14":
   version "7.20.5"
@@ -5618,7 +5616,9 @@ react-is@^19.1.0:
 "react-native-ui@file:packages/ui":
   version "0.0.1"
   dependencies:
+    "@hookform/resolvers" "^3.9.0"
     react-hook-form "^7.61.1"
+    yup "^1.6.1"
 
 react-native@0.80.2:
   version "0.80.2"

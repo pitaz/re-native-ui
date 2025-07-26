@@ -3,7 +3,6 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "example",
-    "sample"
+    "example"
   ]
 }
