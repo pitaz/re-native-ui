@@ -25,7 +25,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
         label={label}
         error={error}
         secureTextEntry={!visible}
-        rightElement={
+        rightIcon={
           <TouchableOpacity onPress={toggleVisibility}>
             <Text style={{ color: theme.colors.primary }}>
               {visible ? 'Hide' : 'Show'}
