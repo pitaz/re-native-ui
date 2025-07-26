@@ -18,7 +18,7 @@ const config: Config = {
   url: "https://pitaz.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/react-native-ui-library/",
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   organizationName: "pitaz", // Usually your GitHub org/user name.
