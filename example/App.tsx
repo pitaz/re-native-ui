@@ -264,7 +264,7 @@ const OTPInputDemo = () => {
 };
 
 const SliderDemo = () => {  
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(0);
   return (
     <Box p="md">
       <Text variant="heading">Slider Demo - Value: {volume}</Text>
@@ -274,13 +274,13 @@ const SliderDemo = () => {
   onChange={setVolume}
   min={0}
   max={100}
-  step={5}
+  // step={5}
   showTooltip
 />
       <Spacer size={12} />
-      <Button onPress={() => setVolume(Math.floor(Math.random() * 100))}>
+      {/* <Button onPress={() => setVolume(Math.floor(Math.random() * 100))}>
         Random Value
-      </Button>
+      </Button> */}
     </Box>
   );
 };
