@@ -463,7 +463,6 @@ export default function App() {
 - Learn about [theming](./theming) to customize the appearance
 - Explore individual [components](./components/input) for detailed usage
 - Check out the example app for complete implementation examples
-- Read about [form management](./components/form) for complex forms
 
 ## Support
 
