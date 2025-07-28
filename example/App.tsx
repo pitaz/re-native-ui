@@ -26,7 +26,11 @@ import {
   StepperInput,
   CheckBox,
   Switch,
-  DatePicker
+  DatePicker,
+  MaskedInput,
+  TagInput,
+  OTPInput,
+  Slider
 } from 'react-native-ui';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -35,7 +39,7 @@ const Demo = () => {
   const toggleTheme = useToggleColorMode();
  
 
-  return (
+  return ( 
     <Box p="md" bg="background">
       <Text variant="heading">Hello Theme</Text>
       <Button onPress={toggleTheme}>Toggle Theme</Button>
@@ -216,6 +220,71 @@ const DatePickerDemo = () => {
   );
 };
 
+const MaskedInputDemo = () => {
+  const [value, setValue] = useState('');
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Masked Input Demo</Text>
+      <MaskedInput
+        label="Phone Number"
+        value={value}
+        onChangeText={setValue}
+        maskType="phone"
+      />
+    </Box>
+  );
+};
+
+const TagInputDemo = () => {
+  const [tags, setTags] = useState<string[]>([]);
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Tag Input Demo</Text>
+      <TagInput
+        label="Tags"
+        tags={tags}
+        onChange={setTags}
+      />
+    </Box>
+  );
+};
+
+const OTPInputDemo = () => {
+  const [otp, setOtp] = useState('');
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">OTP Input Demo</Text>
+      <OTPInput
+        length={4}
+        value={otp}
+        onChangeText={(text) => setOtp(text)}
+      />
+    </Box>
+  );
+};
+
+const SliderDemo = () => {  
+  const [volume, setVolume] = useState(50);
+  return (
+    <Box p="md">
+      <Text variant="heading">Slider Demo - Value: {volume}</Text>
+      <Slider
+  label="Volume"
+  value={volume}
+  onChange={setVolume}
+  min={0}
+  max={100}
+  step={5}
+  showTooltip
+/>
+      <Spacer size={12} />
+      <Button onPress={() => setVolume(Math.floor(Math.random() * 100))}>
+        Random Value
+      </Button>
+    </Box>
+  );
+};
+
 export default function App() {
 
   return (
@@ -237,10 +306,14 @@ export default function App() {
           {/* <TextAreaDemo /> */}
           {/* <PasswordInputDemo /> */}
           {/* <FormDemo /> */}
-          <StepperInputDemo />
+          {/* <StepperInputDemo /> */}
           {/* <CheckboxDemo />
           <SwitchDemo /> */}
           <DatePickerDemo />
+          {/* <MaskedInputDemo /> */}
+          {/* <TagInputDemo /> */}
+          {/* <OTPInputDemo /> */}
+          <SliderDemo />
         </Container>
         <StatusBar barStyle="dark-content" />
       </SafeAreaView>

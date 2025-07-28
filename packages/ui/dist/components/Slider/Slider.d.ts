@@ -8,5 +8,6 @@ export interface SliderProps {
     step?: number;
     error?: string;
     disabled?: boolean;
+    showTooltip?: boolean;
 }
 export declare const Slider: React.FC<SliderProps>;

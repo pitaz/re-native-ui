@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useContext, createContext, useCallback, useRef } from 'react';
-import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList, Switch as Switch$1, PanResponder, ScrollView } from 'react-native';
+import React, { useState, useMemo, useContext, createContext, useRef, useEffect, useCallback } from 'react';
+import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList, Switch as Switch$1, Animated, PanResponder, ScrollView } from 'react-native';
 
 var Spacer = function Spacer(_ref) {
   var _ref$size = _ref.size,
@@ -3221,36 +3221,68 @@ var Slider = function Slider(_ref) {
     _ref$step = _ref.step,
     step = _ref$step === void 0 ? 1 : _ref$step,
     error = _ref.error,
-    disabled = _ref.disabled;
+    disabled = _ref.disabled,
+    _ref$showTooltip = _ref.showTooltip,
+    showTooltip = _ref$showTooltip === void 0 ? false : _ref$showTooltip;
   var theme = useTheme();
-  var _React$useState = React.useState(0),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    sliderWidth = _React$useState2[0],
-    setSliderWidth = _React$useState2[1];
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    sliderWidth = _useState2[0],
+    setSliderWidth = _useState2[1];
+  var animatedValue = useRef(new Animated.Value(0)).current;
   var clamp = function clamp(val) {
     return Math.min(Math.max(val, min), max);
   };
-  var panResponder = React.useRef(PanResponder.create({
+  var getPositionForValue = function getPositionForValue(val) {
+    var ratio = (val - min) / (max - min);
+    return ratio * sliderWidth;
+  };
+  var getValueForPosition = function getValueForPosition(pos) {
+    var ratio = Math.min(Math.max(pos / sliderWidth, 0), 1);
+    var rawValue = min + ratio * (max - min);
+    return Math.round(rawValue / step) * step;
+  };
+  var panResponder = useRef(PanResponder.create({
     onStartShouldSetPanResponder: function onStartShouldSetPanResponder() {
       return !disabled;
     },
     onMoveShouldSetPanResponder: function onMoveShouldSetPanResponder() {
       return !disabled;
     },
+    onPanResponderGrant: function onPanResponderGrant() {
+      animatedValue.stopAnimation();
+    },
     onPanResponderMove: function onPanResponderMove(e, gestureState) {
-      var relativeX = gestureState.moveX - gestureState.x0;
-      var percent = Math.min(Math.max(relativeX / sliderWidth, 0), 1);
-      var newValue = Math.round((min + percent * (max - min)) / step) * step;
-      onChange(clamp(newValue));
+      if (sliderWidth === 0) return;
+      // Get the slider's position on screen
+      var sliderElement = e.target;
+      if (sliderElement) {
+        sliderElement.measure(function (x, y, width, height, pageX, pageY) {
+          var touchX = e.nativeEvent.pageX;
+          var relativeX = touchX - pageX;
+          var clamped = clamp(getValueForPosition(relativeX));
+          onChange(clamped);
+          animatedValue.setValue(getPositionForValue(clamped));
+        });
+      }
     }
   })).current;
+  useEffect(function () {
+    if (sliderWidth === 0) return;
+    var pos = getPositionForValue(value);
+    Animated.timing(animatedValue, {
+      toValue: pos,
+      duration: 150,
+      useNativeDriver: false
+    }).start();
+  }, [value, sliderWidth, animatedValue]);
   var handleLayout = useCallback(function (e) {
-    setSliderWidth(e.nativeEvent.layout.width);
-  }, []);
-  var getThumbPosition = function getThumbPosition() {
-    var ratio = (value - min) / (max - min);
-    return Math.max(0, Math.min(ratio * sliderWidth, sliderWidth));
-  };
+    var width = e.nativeEvent.layout.width;
+    setSliderWidth(width);
+    if (width > 0) {
+      animatedValue.setValue(getPositionForValue(value));
+    }
+  }, [value, animatedValue]);
   var styles = StyleSheet.create({
     container: {
       marginBottom: theme.spacing.md
@@ -3261,11 +3293,11 @@ var Slider = function Slider(_ref) {
       color: theme.colors.text
     },
     track: {
-      height: 6,
-      borderRadius: 3,
-      backgroundColor: theme.colors.border,
-      position: 'relative',
-      justifyContent: 'center'
+      height: 20,
+      borderRadius: 10,
+      backgroundColor: 'transparent',
+      justifyContent: 'center',
+      position: 'relative'
     },
     fill: {
       height: 6,
@@ -3273,8 +3305,8 @@ var Slider = function Slider(_ref) {
       backgroundColor: theme.colors.primary,
       position: 'absolute',
       left: 0,
-      top: 0,
-      bottom: 0
+      top: 7,
+      bottom: 7
     },
     thumb: {
       position: 'absolute',
@@ -3282,8 +3314,31 @@ var Slider = function Slider(_ref) {
       height: 20,
       borderRadius: 10,
       backgroundColor: theme.colors.primary,
-      top: -7,
-      marginLeft: -10
+      top: 0,
+      marginLeft: -10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 3
+    },
+    tooltipContainer: {
+      position: 'absolute',
+      bottom: 30,
+      transform: [{
+        translateX: -20
+      }],
+      backgroundColor: theme.colors.primary,
+      paddingHorizontal: 8,
+      paddingVertical: 2,
+      borderRadius: 4
+    },
+    tooltipText: {
+      color: 'white',
+      fontSize: 12
     },
     error: {
       color: 'red',
@@ -3298,13 +3353,19 @@ var Slider = function Slider(_ref) {
   }, label), /*#__PURE__*/React.createElement(View, _objectSpread$2({
     style: styles.track,
     onLayout: handleLayout
-  }, panResponder.panHandlers), /*#__PURE__*/React.createElement(View, {
+  }, panResponder.panHandlers), /*#__PURE__*/React.createElement(Animated.View, {
     style: [styles.fill, {
-      width: getThumbPosition()
+      width: animatedValue
     }]
-  }), /*#__PURE__*/React.createElement(View, {
+  }), showTooltip && (/*#__PURE__*/React.createElement(Animated.View, {
+    style: [styles.tooltipContainer, {
+      left: animatedValue
+    }]
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.tooltipText
+  }, value))), /*#__PURE__*/React.createElement(Animated.View, {
     style: [styles.thumb, {
-      left: getThumbPosition()
+      left: animatedValue
     }]
   })), error && /*#__PURE__*/React.createElement(Text$1, {
     style: styles.error
@@ -3754,7 +3815,7 @@ var TagInput = function TagInput(_ref) {
       borderRadius: 16
     },
     tagText: {
-      color: theme.colors.primary,
+      color: theme.colors.background,
       fontSize: theme.fontSizes.sm,
       marginRight: 6
     },
@@ -3793,7 +3854,7 @@ var TagInput = function TagInput(_ref) {
       style: styles.removeBtn
     }, /*#__PURE__*/React.createElement(Text$1, {
       style: {
-        color: theme.colors.primary
+        color: theme.colors.background
       }
     }, "\xD7")));
   }), /*#__PURE__*/React.createElement(TextInput, {

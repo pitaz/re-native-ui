@@ -91,7 +91,7 @@ export const TagInput: React.FC<TagInputProps> = ({
       borderRadius: 16,
     },
     tagText: {
-      color: theme.colors.primary,
+      color: theme.colors.background,
       fontSize: theme.fontSizes.sm,
       marginRight: 6,
     },
@@ -119,7 +119,7 @@ export const TagInput: React.FC<TagInputProps> = ({
           <View key={idx} style={styles.tag}>
             <Text style={styles.tagText}>{tag}</Text>
             <TouchableOpacity onPress={() => removeTag(idx)} style={styles.removeBtn}>
-              <Text style={{ color: theme.colors.primary }}>×</Text>
+              <Text style={{ color: theme.colors.background }}>×</Text>
             </TouchableOpacity>
           </View>
         ))}
