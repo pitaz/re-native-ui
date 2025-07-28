@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useContext, createContext } from 'react';
-import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList } from 'react-native';
+import React, { useState, useMemo, useContext, createContext, useCallback, useRef } from 'react';
+import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList, Switch as Switch$1, PanResponder, ScrollView } from 'react-native';
 
 var Spacer = function Spacer(_ref) {
   var _ref$size = _ref.size,
@@ -121,9 +121,9 @@ function _objectWithoutProperties(e, t) {
   return i;
 }
 
-var _excluded$7 = ["children", "padding", "maxWidth", "style"];
-function ownKeys$9(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$9(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$9(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$9(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$9 = ["children", "padding", "maxWidth", "style"];
+function ownKeys$c(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$c(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$c(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$c(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Container = function Container(_ref) {
   var children = _ref.children,
     _ref$padding = _ref.padding,
@@ -131,8 +131,8 @@ var Container = function Container(_ref) {
     _ref$maxWidth = _ref.maxWidth,
     maxWidth = _ref$maxWidth === void 0 ? 600 : _ref$maxWidth,
     style = _ref.style,
-    props = _objectWithoutProperties(_ref, _excluded$7);
-  return /*#__PURE__*/React.createElement(View, _objectSpread$9({
+    props = _objectWithoutProperties(_ref, _excluded$9);
+  return /*#__PURE__*/React.createElement(View, _objectSpread$c({
     style: [styles$1.container, {
       padding: padding,
       maxWidth: maxWidth
@@ -200,15 +200,16 @@ function _slicedToArray(r, e) {
   return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
 }
 
-function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$8(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$8(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$8(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$b(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$b(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$b(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$b(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var defaultLightTheme = {
   colors: {
     primary: "#1E90FF",
     text: "#000",
     background: "#FFF",
     muted: "#888",
-    border: "#E0E0E0"
+    border: "#E0E0E0",
+    error: "#FF0000"
   },
   mode: "light",
   spacing: {
@@ -226,8 +227,8 @@ var defaultLightTheme = {
     xl: 24
   }
 };
-var defaultDarkTheme = _objectSpread$8(_objectSpread$8({}, defaultLightTheme), {}, {
-  colors: _objectSpread$8(_objectSpread$8({}, defaultLightTheme.colors), {}, {
+var defaultDarkTheme = _objectSpread$b(_objectSpread$b({}, defaultLightTheme), {}, {
+  colors: _objectSpread$b(_objectSpread$b({}, defaultLightTheme.colors), {}, {
     text: "#FFF",
     background: "#121212",
     border: "#333",
@@ -266,15 +267,15 @@ var useToggleColorMode = function useToggleColorMode() {
   return useContext(ThemeToggleContext);
 };
 
-var _excluded$6 = ["variant", "style", "children"];
-function ownKeys$7(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$7(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$7(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$7(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$8 = ["variant", "style", "children"];
+function ownKeys$a(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$a(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$a(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$a(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Text = function Text(_ref) {
   var _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'body' : _ref$variant,
     style = _ref.style,
     children = _ref.children,
-    props = _objectWithoutProperties(_ref, _excluded$6);
+    props = _objectWithoutProperties(_ref, _excluded$8);
   var theme = useTheme();
   var styles = StyleSheet.create({
     heading: {
@@ -296,20 +297,20 @@ var Text = function Text(_ref) {
       color: theme.colors.muted
     }
   });
-  return /*#__PURE__*/React.createElement(Text$1, _objectSpread$7({
+  return /*#__PURE__*/React.createElement(Text$1, _objectSpread$a({
     style: [styles[variant], style]
   }, props), children);
 };
 
-var _excluded$5 = ["children", "bg", "p", "style"];
-function ownKeys$6(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$6(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$6(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$6(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$7 = ["children", "bg", "p", "style"];
+function ownKeys$9(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$9(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$9(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$9(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Box = function Box(_ref) {
   var children = _ref.children,
     bg = _ref.bg,
     p = _ref.p,
     style = _ref.style,
-    props = _objectWithoutProperties(_ref, _excluded$5);
+    props = _objectWithoutProperties(_ref, _excluded$7);
   var theme = useTheme();
   var themedStyle = StyleSheet.create({
     box: {
@@ -317,7 +318,7 @@ var Box = function Box(_ref) {
       padding: p ? theme.spacing[p] : undefined
     }
   });
-  return /*#__PURE__*/React.createElement(View, _objectSpread$6({
+  return /*#__PURE__*/React.createElement(View, _objectSpread$9({
     style: [themedStyle.box, style]
   }, props), children);
 };
@@ -366,16 +367,16 @@ var Button = function Button(_ref) {
   }, children));
 };
 
-var _excluded$4 = ["label", "error", "style", "rightIcon", "leftIcon"];
-function ownKeys$5(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$5(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$5(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$5(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$6 = ["label", "error", "style", "rightIcon", "leftIcon"];
+function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$8(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$8(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$8(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Input = function Input(_ref) {
   var label = _ref.label,
     error = _ref.error,
     style = _ref.style,
     rightIcon = _ref.rightIcon,
     leftIcon = _ref.leftIcon,
-    props = _objectWithoutProperties(_ref, _excluded$4);
+    props = _objectWithoutProperties(_ref, _excluded$6);
   var theme = useTheme();
   var styles = StyleSheet.create({
     container: {
@@ -441,7 +442,7 @@ var Input = function Input(_ref) {
     style: styles.inputContainer
   }, /*#__PURE__*/React.createElement(View, {
     style: styles.leftIcon
-  }, leftIcon && leftIcon), /*#__PURE__*/React.createElement(TextInput, _objectSpread$5({
+  }, leftIcon && leftIcon), /*#__PURE__*/React.createElement(TextInput, _objectSpread$8({
     style: [rightIcon ? styles.inputWithrightIcon : styles.input, style],
     placeholderTextColor: theme.colors.muted
   }, props)), /*#__PURE__*/React.createElement(View, {
@@ -451,13 +452,13 @@ var Input = function Input(_ref) {
   }, error));
 };
 
-var _excluded$3 = ["label", "error"];
-function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$5 = ["label", "error"];
+function ownKeys$7(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$7(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$7(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$7(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var PasswordInput = function PasswordInput(_ref) {
   var label = _ref.label,
     error = _ref.error,
-    props = _objectWithoutProperties(_ref, _excluded$3);
+    props = _objectWithoutProperties(_ref, _excluded$5);
   var _useState = useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     visible = _useState2[0],
@@ -468,7 +469,7 @@ var PasswordInput = function PasswordInput(_ref) {
       return !prev;
     });
   };
-  return /*#__PURE__*/React.createElement(View, null, /*#__PURE__*/React.createElement(Input, _objectSpread$4({
+  return /*#__PURE__*/React.createElement(View, null, /*#__PURE__*/React.createElement(Input, _objectSpread$7({
     label: label,
     error: error,
     secureTextEntry: !visible,
@@ -482,17 +483,17 @@ var PasswordInput = function PasswordInput(_ref) {
   }, props)));
 };
 
-var _excluded$2 = ["label", "error", "rows", "style"];
-function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$3(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$3(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$3(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$4 = ["label", "error", "rows", "style"];
+function ownKeys$6(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$6(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$6(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$6(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var TextArea = function TextArea(_ref) {
   var label = _ref.label,
     error = _ref.error,
     _ref$rows = _ref.rows,
     rows = _ref$rows === void 0 ? 4 : _ref$rows,
     style = _ref.style,
-    props = _objectWithoutProperties(_ref, _excluded$2);
-  return /*#__PURE__*/React.createElement(Input, _objectSpread$3({
+    props = _objectWithoutProperties(_ref, _excluded$4);
+  return /*#__PURE__*/React.createElement(Input, _objectSpread$6({
     label: label,
     error: error,
     multiline: true,
@@ -2858,8 +2859,8 @@ const s=(e,s,o)=>{if(e&&"reportValidity"in e){const r=get(o,s);e.setCustomValidi
 
 function o(o,n,a){return void 0===n&&(n={}),void 0===a&&(a={}),function(s,i,c){try{return Promise.resolve(function(t,r){try{var u=(n.context&&"development"===process.env.NODE_ENV&&console.warn("You should not used the yup options context. Please, use the 'useForm' context object instead"),Promise.resolve(o["sync"===a.mode?"validateSync":"validate"](s,Object.assign({abortEarly:!1},n,{context:i}))).then(function(t){return c.shouldUseNativeValidation&&o$1({},c),{values:a.raw?s:t,errors:{}}}));}catch(e){return r(e)}return u&&u.then?u.then(void 0,r):u}(0,function(e){if(!e.inner)throw e;return {values:{},errors:r((o=e,n=!c.shouldUseNativeValidation&&"all"===c.criteriaMode,(o.inner||[]).reduce(function(e,t){if(e[t.path]||(e[t.path]={message:t.message,type:t.type}),n){var o=e[t.path].types,a=o&&o[t.type];e[t.path]=appendErrors(t.path,n,e,t.type,a?[].concat(a,t.message):t.message);}return e},{})),c)};var o,n;}))}catch(e){return Promise.reject(e)}}}
 
-function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$5(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$5(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$5(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$5(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var FormProvider = function FormProvider(_ref) {
   var defaultValues = _ref.defaultValues,
     children = _ref.children,
@@ -2869,17 +2870,17 @@ var FormProvider = function FormProvider(_ref) {
     mode: 'onChange',
     resolver: schema ? o(schema) : undefined
   });
-  return /*#__PURE__*/React.createElement(FormProvider$1, _objectSpread$2({}, methods), children);
+  return /*#__PURE__*/React.createElement(FormProvider$1, _objectSpread$5({}, methods), children);
 };
 
-var _excluded$1 = ["name", "control", "rules"];
-function ownKeys$1(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$1(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$3 = ["name", "control", "rules"];
+function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var ControlledInput = function ControlledInput(_ref) {
   var name = _ref.name,
     control = _ref.control,
     rules = _ref.rules,
-    rest = _objectWithoutProperties(_ref, _excluded$1);
+    rest = _objectWithoutProperties(_ref, _excluded$3);
   return /*#__PURE__*/React.createElement(Controller, {
     control: control,
     name: name,
@@ -2891,7 +2892,7 @@ var ControlledInput = function ControlledInput(_ref) {
         onBlur = _ref2$field.onBlur,
         value = _ref2$field.value,
         fieldState = _ref2.fieldState;
-      return /*#__PURE__*/React.createElement(Input, _objectSpread$1({
+      return /*#__PURE__*/React.createElement(Input, _objectSpread$4({
         onChangeText: onChange,
         onBlur: onBlur,
         value: value,
@@ -2980,15 +2981,15 @@ var styles = StyleSheet.create({
   }
 });
 
-var _excluded = ["name", "control", "rules", "options"];
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var _excluded$2 = ["name", "control", "rules", "options"];
+function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$3(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$3(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$3(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var ControlledSelect = function ControlledSelect(_ref) {
   var name = _ref.name,
     control = _ref.control,
     rules = _ref.rules,
     options = _ref.options,
-    rest = _objectWithoutProperties(_ref, _excluded);
+    rest = _objectWithoutProperties(_ref, _excluded$2);
   return /*#__PURE__*/React.createElement(Controller, {
     control: control,
     name: name,
@@ -2999,7 +3000,7 @@ var ControlledSelect = function ControlledSelect(_ref) {
         onChange = _ref2$field.onChange,
         value = _ref2$field.value,
         fieldState = _ref2.fieldState;
-      return /*#__PURE__*/React.createElement(Select, _objectSpread({
+      return /*#__PURE__*/React.createElement(Select, _objectSpread$3({
         options: options,
         onChange: onChange,
         value: value,
@@ -3009,5 +3010,894 @@ var ControlledSelect = function ControlledSelect(_ref) {
   });
 };
 
-export { Box, Button, Container, ControlledInput, ControlledSelect, Divider, FormProvider, Input, PasswordInput, Select, Spacer, Stack, Text, TextArea, ThemeProvider, defaultDarkTheme, defaultLightTheme, useTheme, useToggleColorMode };
+var RadioGroup = function RadioGroup(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    options = _ref.options,
+    error = _ref.error;
+  var theme = useTheme();
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text,
+      marginBottom: theme.spacing.xs
+    },
+    option: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: theme.spacing.xs
+    },
+    outerCircle: {
+      height: 20,
+      width: 20,
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: theme.colors.border,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 8
+    },
+    innerCircle: {
+      height: 10,
+      width: 10,
+      borderRadius: 5,
+      backgroundColor: theme.colors.primary
+    },
+    optionLabel: {
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text
+    },
+    error: {
+      color: 'red',
+      fontSize: theme.fontSizes.sm,
+      marginTop: 4
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), options.map(function (option) {
+    return /*#__PURE__*/React.createElement(TouchableOpacity, {
+      key: option.value,
+      style: styles.option,
+      onPress: function onPress() {
+        return onChange(option.value);
+      }
+    }, /*#__PURE__*/React.createElement(View, {
+      style: styles.outerCircle
+    }, value === option.value && /*#__PURE__*/React.createElement(View, {
+      style: styles.innerCircle
+    })), /*#__PURE__*/React.createElement(Text$1, {
+      style: styles.optionLabel
+    }, option.label));
+  }), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+var CheckBox = function CheckBox(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    error = _ref.error;
+  var theme = useTheme();
+  var styles = StyleSheet.create({
+    container: {
+      flexDirection: 'column',
+      marginBottom: theme.spacing.md
+    },
+    checkboxWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    box: {
+      width: 22,
+      height: 22,
+      borderWidth: 1.5,
+      borderColor: error ? theme.colors.error : value ? theme.colors.primary : theme.colors.border,
+      backgroundColor: value ? theme.colors.primary : theme.colors.background,
+      borderRadius: 6,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginRight: 12,
+      shadowColor: value ? theme.colors.primary : 'transparent',
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: value ? 0.2 : 0,
+      shadowRadius: 4,
+      elevation: value ? 2 : 0
+    },
+    check: {
+      width: 12,
+      height: 12,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    checkMark: {
+      width: 8,
+      height: 4,
+      borderLeftWidth: 2,
+      borderBottomWidth: 2,
+      borderColor: theme.colors.background,
+      transform: [{
+        rotate: '-45deg'
+      }],
+      marginTop: -1
+    },
+    label: {
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text,
+      flex: 1
+    },
+    error: {
+      color: theme.colors.error,
+      fontSize: theme.fontSizes.sm,
+      marginTop: 4,
+      marginLeft: 34 // Align with label text
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, /*#__PURE__*/React.createElement(TouchableOpacity, {
+    style: styles.checkboxWrapper,
+    onPress: function onPress() {
+      return onChange(!value);
+    },
+    activeOpacity: 0.7
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.box
+  }, value && (/*#__PURE__*/React.createElement(View, {
+    style: styles.check
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.checkMark
+  })))), label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label)), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+var Switch = function Switch(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    error = _ref.error;
+  var theme = useTheme();
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    labelContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+    label: {
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text
+    },
+    error: {
+      color: 'red',
+      fontSize: theme.fontSizes.sm,
+      marginTop: 4
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.labelContainer
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(Switch$1, {
+    value: value,
+    onValueChange: onChange,
+    thumbColor: value ? theme.colors.primary : theme.colors.muted,
+    trackColor: {
+      "false": theme.colors.border,
+      "true": theme.colors.primary
+    }
+  })), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var Slider = function Slider(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    _ref$min = _ref.min,
+    min = _ref$min === void 0 ? 0 : _ref$min,
+    _ref$max = _ref.max,
+    max = _ref$max === void 0 ? 100 : _ref$max,
+    _ref$step = _ref.step,
+    step = _ref$step === void 0 ? 1 : _ref$step,
+    error = _ref.error,
+    disabled = _ref.disabled;
+  var theme = useTheme();
+  var _React$useState = React.useState(0),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    sliderWidth = _React$useState2[0],
+    setSliderWidth = _React$useState2[1];
+  var clamp = function clamp(val) {
+    return Math.min(Math.max(val, min), max);
+  };
+  var panResponder = React.useRef(PanResponder.create({
+    onStartShouldSetPanResponder: function onStartShouldSetPanResponder() {
+      return !disabled;
+    },
+    onMoveShouldSetPanResponder: function onMoveShouldSetPanResponder() {
+      return !disabled;
+    },
+    onPanResponderMove: function onPanResponderMove(e, gestureState) {
+      var relativeX = gestureState.moveX - gestureState.x0;
+      var percent = Math.min(Math.max(relativeX / sliderWidth, 0), 1);
+      var newValue = Math.round((min + percent * (max - min)) / step) * step;
+      onChange(clamp(newValue));
+    }
+  })).current;
+  var handleLayout = useCallback(function (e) {
+    setSliderWidth(e.nativeEvent.layout.width);
+  }, []);
+  var getThumbPosition = function getThumbPosition() {
+    var ratio = (value - min) / (max - min);
+    return Math.max(0, Math.min(ratio * sliderWidth, sliderWidth));
+  };
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    track: {
+      height: 6,
+      borderRadius: 3,
+      backgroundColor: theme.colors.border,
+      position: 'relative',
+      justifyContent: 'center'
+    },
+    fill: {
+      height: 6,
+      borderRadius: 3,
+      backgroundColor: theme.colors.primary,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0
+    },
+    thumb: {
+      position: 'absolute',
+      width: 20,
+      height: 20,
+      borderRadius: 10,
+      backgroundColor: theme.colors.primary,
+      top: -7,
+      marginLeft: -10
+    },
+    error: {
+      color: 'red',
+      fontSize: theme.fontSizes.sm,
+      marginTop: 4
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(View, _objectSpread$2({
+    style: styles.track,
+    onLayout: handleLayout
+  }, panResponder.panHandlers), /*#__PURE__*/React.createElement(View, {
+    style: [styles.fill, {
+      width: getThumbPosition()
+    }]
+  }), /*#__PURE__*/React.createElement(View, {
+    style: [styles.thumb, {
+      left: getThumbPosition()
+    }]
+  })), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+var DatePicker = function DatePicker(_ref) {
+  var label = _ref.label,
+    _ref$value = _ref.value,
+    value = _ref$value === void 0 ? new Date() : _ref$value,
+    onChange = _ref.onChange,
+    error = _ref.error,
+    _ref$minimumYear = _ref.minimumYear,
+    minimumYear = _ref$minimumYear === void 0 ? 1950 : _ref$minimumYear,
+    _ref$maximumYear = _ref.maximumYear,
+    maximumYear = _ref$maximumYear === void 0 ? new Date().getFullYear() : _ref$maximumYear;
+  var theme = useTheme();
+  var _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    visible = _useState2[0],
+    setVisible = _useState2[1];
+  var _useState3 = useState(value),
+    _useState4 = _slicedToArray(_useState3, 2),
+    tempDate = _useState4[0],
+    setTempDate = _useState4[1];
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    pickerTrigger: {
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+      borderWidth: 1,
+      borderColor: error ? 'red' : theme.colors.border,
+      borderRadius: 6,
+      backgroundColor: theme.colors.background
+    },
+    triggerText: {
+      color: theme.colors.text,
+      fontSize: theme.fontSizes.md
+    },
+    modalBackground: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'rgba(0,0,0,0.3)'
+    },
+    modalContent: {
+      backgroundColor: theme.colors.background,
+      margin: 20,
+      borderRadius: 12,
+      padding: 16
+    },
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 12
+    },
+    pickerRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-around'
+    },
+    column: {
+      flex: 1,
+      height: 150
+    },
+    item: {
+      padding: 10,
+      textAlign: 'center',
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text
+    },
+    selected: {
+      fontWeight: 'bold',
+      color: theme.colors.primary
+    },
+    errorText: {
+      color: 'red',
+      fontSize: theme.fontSizes.sm,
+      marginTop: 4
+    }
+  });
+  var years = Array.from({
+    length: maximumYear - minimumYear + 1
+  }, function (_, i) {
+    return minimumYear + i;
+  });
+  var months = Array.from({
+    length: 12
+  }, function (_, i) {
+    return i + 1;
+  });
+  var days = Array.from({
+    length: 31
+  }, function (_, i) {
+    return i + 1;
+  });
+  var updateDate = function updateDate(type, val) {
+    var newDate = new Date(tempDate);
+    if (type === 'year') newDate.setFullYear(val);
+    if (type === 'month') newDate.setMonth(val - 1);
+    if (type === 'day') newDate.setDate(val);
+    setTempDate(newDate);
+  };
+  var formatDate = function formatDate(d) {
+    return "".concat(d.getFullYear(), "-").concat((d.getMonth() + 1).toString().padStart(2, '0'), "-").concat(d.getDate().toString().padStart(2, '0'));
+  };
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(TouchableOpacity, {
+    style: styles.pickerTrigger,
+    onPress: function onPress() {
+      return setVisible(true);
+    }
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.triggerText
+  }, formatDate(value))), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.errorText
+  }, error), /*#__PURE__*/React.createElement(Modal, {
+    transparent: true,
+    visible: visible,
+    animationType: "fade"
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.modalBackground
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.modalContent
+  }, /*#__PURE__*/React.createElement(View, {
+    style: styles.header
+  }, /*#__PURE__*/React.createElement(TouchableOpacity, {
+    onPress: function onPress() {
+      return setVisible(false);
+    }
+  }, /*#__PURE__*/React.createElement(Text$1, null, "Cancel")), /*#__PURE__*/React.createElement(TouchableOpacity, {
+    onPress: function onPress() {
+      onChange(tempDate);
+      setVisible(false);
+    }
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: {
+      color: theme.colors.primary
+    }
+  }, "Confirm"))), /*#__PURE__*/React.createElement(View, {
+    style: styles.pickerRow
+  }, [{
+    data: years,
+    key: 'year',
+    selected: tempDate.getFullYear()
+  }, {
+    data: months,
+    key: 'month',
+    selected: tempDate.getMonth() + 1
+  }, {
+    data: days,
+    key: 'day',
+    selected: tempDate.getDate()
+  }].map(function (_ref2) {
+    var data = _ref2.data,
+      key = _ref2.key,
+      selected = _ref2.selected;
+    return /*#__PURE__*/React.createElement(FlatList, {
+      key: key,
+      data: data,
+      style: styles.column,
+      keyExtractor: function keyExtractor(item) {
+        return item.toString();
+      },
+      showsVerticalScrollIndicator: false,
+      renderItem: function renderItem(_ref3) {
+        var item = _ref3.item;
+        return /*#__PURE__*/React.createElement(TouchableOpacity, {
+          onPress: function onPress() {
+            return updateDate(key, item);
+          }
+        }, /*#__PURE__*/React.createElement(Text$1, {
+          style: [styles.item, selected === item && styles.selected]
+        }, item));
+      }
+    });
+  }))))));
+};
+
+var _excluded$1 = ["length", "value", "onChangeText", "error", "label"];
+function ownKeys$1(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$1(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var OTPInput = function OTPInput(_ref) {
+  var _ref$length = _ref.length,
+    length = _ref$length === void 0 ? 6 : _ref$length,
+    value = _ref.value,
+    onChangeText = _ref.onChangeText,
+    error = _ref.error,
+    label = _ref.label,
+    inputProps = _objectWithoutProperties(_ref, _excluded$1);
+  var theme = useTheme();
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    focusedIndex = _useState2[0],
+    setFocusedIndex = _useState2[1];
+  var inputs = useRef([]);
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    inputRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
+    inputBox: {
+      borderWidth: 1,
+      borderColor: theme.colors.border,
+      borderRadius: 6,
+      width: 40,
+      height: 50,
+      textAlign: 'center',
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text,
+      backgroundColor: theme.colors.background
+    },
+    inputBoxFocused: {
+      borderColor: theme.colors.primary
+    },
+    error: {
+      marginTop: 4,
+      color: 'red',
+      fontSize: theme.fontSizes.sm
+    }
+  });
+  var handleChange = function handleChange(text, index) {
+    if (!/^[0-9]?$/.test(text)) return;
+    var updated = value.split('');
+    updated[index] = text;
+    var newValue = updated.join('');
+    onChangeText(newValue);
+    if (text && index < length - 1) {
+      var _inputs$current;
+      (_inputs$current = inputs.current[index + 1]) === null || _inputs$current === void 0 || _inputs$current.focus();
+    }
+  };
+  var handleKeyPress = function handleKeyPress(e, index) {
+    if (e.nativeEvent.key === 'Backspace' && !value[index] && index > 0) {
+      var _inputs$current2;
+      (_inputs$current2 = inputs.current[index - 1]) === null || _inputs$current2 === void 0 || _inputs$current2.focus();
+    }
+  };
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(View, {
+    style: styles.inputRow
+  }, Array.from({
+    length: length
+  }).map(function (_, i) {
+    return /*#__PURE__*/React.createElement(TextInput, _objectSpread$1({
+      key: i,
+      ref: function ref(_ref2) {
+        inputs.current[i] = _ref2;
+      },
+      value: value[i] || '',
+      onChangeText: function onChangeText(text) {
+        return handleChange(text, i);
+      },
+      onKeyPress: function onKeyPress(e) {
+        return handleKeyPress(e, i);
+      },
+      style: [styles.inputBox, focusedIndex === i && styles.inputBoxFocused],
+      onFocus: function onFocus() {
+        return setFocusedIndex(i);
+      },
+      keyboardType: "numeric",
+      maxLength: 1
+    }, inputProps));
+  })), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+var _excluded = ["label", "value", "onChangeText", "error", "maskType", "maskPattern"];
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+var formatPhone = function formatPhone(val) {
+  var digits = val.replace(/\D/g, '').slice(0, 10);
+  var parts = [];
+  if (digits.length > 0) parts.push('(' + digits.slice(0, 3));
+  if (digits.length >= 4) parts.push(') ' + digits.slice(3, 6));
+  if (digits.length >= 7) parts.push('-' + digits.slice(6, 10));
+  return parts.join('');
+};
+var formatCard = function formatCard(val) {
+  return val.replace(/\D/g, '').slice(0, 16).replace(/(.{4})/g, '$1 ').trim();
+};
+var MaskedInput = function MaskedInput(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    _onChangeText = _ref.onChangeText,
+    error = _ref.error,
+    maskType = _ref.maskType,
+    maskPattern = _ref.maskPattern,
+    props = _objectWithoutProperties(_ref, _excluded);
+  var theme = useTheme();
+  var formatValue = function formatValue(val) {
+    switch (maskType) {
+      case 'phone':
+        return formatPhone(val);
+      case 'card':
+        return formatCard(val);
+      case 'custom':
+        return maskPattern ? maskPattern(val) : val;
+      default:
+        return val;
+    }
+  };
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    input: {
+      borderWidth: 1,
+      borderColor: error ? 'red' : theme.colors.border,
+      borderRadius: 6,
+      paddingVertical: 12,
+      paddingHorizontal: 14,
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text,
+      backgroundColor: theme.colors.background
+    },
+    error: {
+      marginTop: 4,
+      color: 'red',
+      fontSize: theme.fontSizes.sm
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(TextInput, _objectSpread({
+    value: value,
+    onChangeText: function onChangeText(text) {
+      return _onChangeText(formatValue(text));
+    },
+    style: styles.input,
+    placeholderTextColor: theme.colors.muted,
+    keyboardType: "numeric"
+  }, props)), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+function _arrayWithoutHoles(r) {
+  if (Array.isArray(r)) return _arrayLikeToArray(r);
+}
+
+function _iterableToArray(r) {
+  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _toConsumableArray(r) {
+  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+}
+
+var TagInput = function TagInput(_ref) {
+  var label = _ref.label,
+    tags = _ref.tags,
+    onChange = _ref.onChange,
+    _ref$placeholder = _ref.placeholder,
+    placeholder = _ref$placeholder === void 0 ? 'Add a tag' : _ref$placeholder,
+    error = _ref.error,
+    maxTags = _ref.maxTags;
+  var theme = useTheme();
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    input = _useState2[0],
+    setInput = _useState2[1];
+  var inputRef = useRef(null);
+  var handleAddTag = function handleAddTag() {
+    var trimmed = input.trim();
+    if (trimmed && !tags.includes(trimmed)) {
+      if (!maxTags || tags.length < maxTags) {
+        onChange([].concat(_toConsumableArray(tags), [trimmed]));
+      }
+    }
+    setInput('');
+  };
+  var handleKeyPress = function handleKeyPress(e) {
+    if (e.nativeEvent.key === 'Backspace' && input === '' && tags.length) {
+      onChange(tags.slice(0, -1));
+    }
+  };
+  var handleInputChange = function handleInputChange(text) {
+    if (text.endsWith(' ') || text.endsWith(',') || text.endsWith('\n')) {
+      handleAddTag();
+    } else {
+      setInput(text);
+    }
+  };
+  var removeTag = function removeTag(index) {
+    var updated = _toConsumableArray(tags);
+    updated.splice(index, 1);
+    onChange(updated);
+  };
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    tagContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 6,
+      paddingVertical: 8,
+      paddingHorizontal: 12,
+      borderWidth: 1,
+      borderColor: error ? 'red' : theme.colors.border,
+      borderRadius: 6,
+      backgroundColor: theme.colors.background
+    },
+    tag: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingVertical: 4,
+      paddingHorizontal: 8,
+      backgroundColor: theme.colors.primary,
+      borderRadius: 16
+    },
+    tagText: {
+      color: theme.colors.primary,
+      fontSize: theme.fontSizes.sm,
+      marginRight: 6
+    },
+    removeBtn: {
+      paddingHorizontal: 4
+    },
+    input: {
+      flexGrow: 1,
+      minWidth: 80,
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text
+    },
+    error: {
+      marginTop: 4,
+      color: 'red',
+      fontSize: theme.fontSizes.sm
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(ScrollView, {
+    horizontal: false,
+    contentContainerStyle: styles.tagContainer
+  }, tags.map(function (tag, idx) {
+    return /*#__PURE__*/React.createElement(View, {
+      key: idx,
+      style: styles.tag
+    }, /*#__PURE__*/React.createElement(Text$1, {
+      style: styles.tagText
+    }, tag), /*#__PURE__*/React.createElement(TouchableOpacity, {
+      onPress: function onPress() {
+        return removeTag(idx);
+      },
+      style: styles.removeBtn
+    }, /*#__PURE__*/React.createElement(Text$1, {
+      style: {
+        color: theme.colors.primary
+      }
+    }, "\xD7")));
+  }), /*#__PURE__*/React.createElement(TextInput, {
+    ref: inputRef,
+    value: input,
+    onChangeText: handleInputChange,
+    onKeyPress: handleKeyPress,
+    placeholder: placeholder,
+    placeholderTextColor: theme.colors.muted,
+    style: styles.input,
+    returnKeyType: "done",
+    onSubmitEditing: handleAddTag
+  })), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+var StepperInput = function StepperInput(_ref) {
+  var label = _ref.label,
+    value = _ref.value,
+    onChange = _ref.onChange,
+    _ref$step = _ref.step,
+    step = _ref$step === void 0 ? 1 : _ref$step,
+    _ref$min = _ref.min,
+    min = _ref$min === void 0 ? 0 : _ref$min,
+    _ref$max = _ref.max,
+    max = _ref$max === void 0 ? Infinity : _ref$max,
+    error = _ref.error,
+    disabled = _ref.disabled;
+  var theme = useTheme();
+  var increase = function increase() {
+    if (value + step <= max) onChange(value + step);
+  };
+  var decrease = function decrease() {
+    if (value - step >= min) onChange(value - step);
+  };
+  var styles = StyleSheet.create({
+    container: {
+      marginBottom: theme.spacing.md
+    },
+    label: {
+      marginBottom: theme.spacing.xs,
+      fontSize: theme.fontSizes.sm,
+      color: theme.colors.text
+    },
+    stepperContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: error ? 'red' : theme.colors.border,
+      borderRadius: 6,
+      overflow: 'hidden',
+      backgroundColor: theme.colors.background
+    },
+    button: {
+      paddingVertical: 10,
+      paddingHorizontal: 16,
+      backgroundColor: theme.colors.background
+    },
+    buttonText: {
+      fontSize: theme.fontSizes.lg,
+      color: theme.colors.text
+    },
+    valueContainer: {
+      flex: 1,
+      paddingVertical: 10,
+      alignItems: 'center'
+    },
+    valueText: {
+      fontSize: theme.fontSizes.md,
+      color: theme.colors.text
+    },
+    error: {
+      marginTop: 4,
+      color: 'red',
+      fontSize: theme.fontSizes.sm
+    }
+  });
+  return /*#__PURE__*/React.createElement(View, {
+    style: styles.container
+  }, label && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.label
+  }, label), /*#__PURE__*/React.createElement(View, {
+    style: styles.stepperContainer
+  }, /*#__PURE__*/React.createElement(TouchableOpacity, {
+    onPress: decrease,
+    style: styles.button,
+    disabled: disabled || value <= min
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.buttonText
+  }, "\u2212")), /*#__PURE__*/React.createElement(View, {
+    style: styles.valueContainer
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.valueText
+  }, value)), /*#__PURE__*/React.createElement(TouchableOpacity, {
+    onPress: increase,
+    style: styles.button,
+    disabled: disabled || value >= max
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.buttonText
+  }, "+"))), error && /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.error
+  }, error));
+};
+
+export { Box, Button, CheckBox, Container, ControlledInput, ControlledSelect, DatePicker, Divider, FormProvider, Input, MaskedInput, OTPInput, PasswordInput, RadioGroup, Select, Slider, Spacer, Stack, StepperInput, Switch, TagInput, Text, TextArea, ThemeProvider, defaultDarkTheme, defaultLightTheme, useTheme, useToggleColorMode };
 //# sourceMappingURL=index.es.js.map

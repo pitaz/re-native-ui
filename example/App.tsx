@@ -22,7 +22,11 @@ import {
   TextArea,
   PasswordInput,
   FormProvider,
-  ControlledInput
+  ControlledInput,
+  StepperInput,
+  CheckBox,
+  Switch,
+  DatePicker
 } from 'react-native-ui';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -55,6 +59,7 @@ const InputDemo = () => {
         keyboardType="email-address"
         autoCapitalize="none"
         error={error}
+        style={{ width: '100%' }}
       />
       <Spacer size={12} />
       <Button
@@ -128,20 +133,88 @@ const FormDemo = () => {
   return (
     <Box p="md" bg="background">
       <Text variant="heading">Form Demo</Text>
+ 
 
 
       <FormProvider
         defaultValues={{ email: '', password: '' }}
         schema={schema}
       >
-        <ControlledInput  name="email" label="Email" control={control} rules={{ required: true }} />
-        <ControlledInput name="password" label="Password" control={control} rules={{ required: true }} />
+        <ControlledInput  name="email" label="Email" control={control} rules={{ required: true }} style={{ width: '100%' }} />
+        <ControlledInput name="password" label="Password" control={control} rules={{ required: true }} style={{ width: '100%' }} />
         <Button onPress={handleSubmit(data => console.log(data))}>Submit</Button>
       </FormProvider>
     </Box>
   );
 };
 
+const StepperInputDemo = () => {
+  const [guests, setGuests] = useState(1);
+  const [error, setError] = useState('');
+
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Stepper Input Demo</Text>
+      <StepperInput
+  label="Number of Guests"
+  value={guests}
+  onChange={(value) => {
+    setGuests(value);
+    if (value > 8) {
+      return setError("Maximum 8 guests allowed");
+    } else {
+      setError("");
+    }
+  }}
+  min={1}
+  max={10}
+  error={error}
+/>
+    </Box>
+  );
+};
+
+const CheckboxDemo = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Checkbox Demo</Text>
+      <CheckBox
+        label="I agree to the terms and conditions"
+        value={isChecked}
+        onChange={setIsChecked}
+      />
+    </Box>
+  );
+};
+
+const SwitchDemo = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Switch Demo</Text>
+      <Switch
+  label="Enable notifications"
+  value={isEnabled}
+  onChange={setIsEnabled}
+/>
+    </Box>
+  );
+};
+
+const DatePickerDemo = () => {
+  const [date, setDate] = useState(new Date());
+  return (
+    <Box p="md" bg="background">
+      <Text variant="heading">Date Picker Demo</Text>
+      <DatePicker
+        label="Select Date"
+        value={date}
+        onChange={setDate}
+      />
+    </Box>
+  );
+};
 
 export default function App() {
 
@@ -163,7 +236,11 @@ export default function App() {
           {/* <Demo /> */}
           {/* <TextAreaDemo /> */}
           {/* <PasswordInputDemo /> */}
-          <FormDemo />
+          {/* <FormDemo /> */}
+          <StepperInputDemo />
+          {/* <CheckboxDemo />
+          <SwitchDemo /> */}
+          <DatePickerDemo />
         </Container>
         <StatusBar barStyle="dark-content" />
       </SafeAreaView>
