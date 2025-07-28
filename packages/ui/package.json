@@ -27,8 +27,10 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "date-fns": "^4.1.0",
     "react-hook-form": "^7.61.1",
-    "yup": "^1.6.1",
-    "@hookform/resolvers": "^3.9.0"
+    "react-native-modal-datetime-picker": "^18.0.0",
+    "yup": "^1.6.1"
   }
 }
