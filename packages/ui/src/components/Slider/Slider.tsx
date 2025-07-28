@@ -3,9 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
-  PanResponder,
   LayoutChangeEvent,
   Animated,
+  TouchableOpacity,
 } from 'react-native';
 import { useTheme } from '../../theme/ThemeContext';
 
@@ -49,30 +49,19 @@ export const Slider: React.FC<SliderProps> = ({
     return Math.round(rawValue / step) * step;
   };
 
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => !disabled,
-      onMoveShouldSetPanResponder: () => !disabled,
-      onPanResponderGrant: () => {
-        animatedValue.stopAnimation();
-      },
-      onPanResponderMove: (e, gestureState) => {
-        if (sliderWidth === 0) return;
-        
-        // Get the slider's position on screen
-        const sliderElement = e.target;
-        if (sliderElement) {
-          sliderElement.measure((x, y, width, height, pageX, pageY) => {
-            const touchX = e.nativeEvent.pageX;
-            const relativeX = touchX - pageX;
-            const clamped = clamp(getValueForPosition(relativeX));
-            onChange(clamped);
-            animatedValue.setValue(getPositionForValue(clamped));
-          });
-        }
-      },
-    })
-  ).current;
+  const handleTouch = (e: any) => {
+    if (sliderWidth === 0 || disabled) return;
+    
+    const touchX = e.nativeEvent.pageX;
+    const trackElement = e.target;
+    
+    trackElement.measure((x: number, y: number, width: number, height: number, pageX: number, pageY: number) => {
+      const relativeX = touchX - pageX;
+      const clamped = clamp(getValueForPosition(relativeX));
+      onChange(clamped);
+      animatedValue.setValue(getPositionForValue(clamped));
+    });
+  };
 
   useEffect(() => {
     if (sliderWidth === 0) return;
@@ -102,11 +91,12 @@ export const Slider: React.FC<SliderProps> = ({
       color: theme.colors.text,
     },
     track: {
-      height: 20,
-      borderRadius: 10,
+      height: 40,
+      borderRadius: 20,
       backgroundColor: 'transparent',
       justifyContent: 'center',
       position: 'relative',
+      alignItems: 'center',
     },
     fill: {
       height: 6,
@@ -114,17 +104,17 @@ export const Slider: React.FC<SliderProps> = ({
       backgroundColor: theme.colors.primary,
       position: 'absolute',
       left: 0,
-      top: 7,
-      bottom: 7,
+      top: 17,
+      bottom: 17,
     },
     thumb: {
       position: 'absolute',
-      width: 20,
-      height: 20,
-      borderRadius: 10,
+      width: 24,
+      height: 24,
+      borderRadius: 12,
       backgroundColor: theme.colors.primary,
-      top: 0,
-      marginLeft: -10,
+      top: 8,
+      marginLeft: -12,
       shadowColor: "#000",
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
@@ -154,10 +144,11 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
-      <View
+      <TouchableOpacity
         style={styles.track}
         onLayout={handleLayout}
-        {...panResponder.panHandlers}
+        onPress={handleTouch}
+        activeOpacity={1}
       >
         <Animated.View style={[styles.fill, { width: animatedValue }]} />
         
@@ -168,7 +159,7 @@ export const Slider: React.FC<SliderProps> = ({
         )}
 
         <Animated.View style={[styles.thumb, { left: animatedValue }]} />
-      </View>
+      </TouchableOpacity>
       {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
