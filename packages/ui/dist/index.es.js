@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useContext, createContext, useCallback, useRef } from 'react';
-import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList, Switch as Switch$1, PanResponder, ScrollView } from 'react-native';
+import React, { useState, useMemo, useContext, createContext, useRef, useEffect, useCallback } from 'react';
+import { View, StyleSheet, Appearance, Text as Text$1, TouchableOpacity, ActivityIndicator, TextInput, Modal, FlatList, Switch as Switch$1, Animated, ScrollView } from 'react-native';
 
 var Spacer = function Spacer(_ref) {
   var _ref$size = _ref.size,
@@ -122,8 +122,8 @@ function _objectWithoutProperties(e, t) {
 }
 
 var _excluded$9 = ["children", "padding", "maxWidth", "style"];
-function ownKeys$c(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$c(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$c(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$c(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$b(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$b(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$b(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$b(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Container = function Container(_ref) {
   var children = _ref.children,
     _ref$padding = _ref.padding,
@@ -132,7 +132,7 @@ var Container = function Container(_ref) {
     maxWidth = _ref$maxWidth === void 0 ? 600 : _ref$maxWidth,
     style = _ref.style,
     props = _objectWithoutProperties(_ref, _excluded$9);
-  return /*#__PURE__*/React.createElement(View, _objectSpread$c({
+  return /*#__PURE__*/React.createElement(View, _objectSpread$b({
     style: [styles$1.container, {
       padding: padding,
       maxWidth: maxWidth
@@ -200,8 +200,8 @@ function _slicedToArray(r, e) {
   return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
 }
 
-function ownKeys$b(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$b(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$b(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$b(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$a(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$a(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$a(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$a(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var defaultLightTheme = {
   colors: {
     primary: "#1E90FF",
@@ -227,8 +227,8 @@ var defaultLightTheme = {
     xl: 24
   }
 };
-var defaultDarkTheme = _objectSpread$b(_objectSpread$b({}, defaultLightTheme), {}, {
-  colors: _objectSpread$b(_objectSpread$b({}, defaultLightTheme.colors), {}, {
+var defaultDarkTheme = _objectSpread$a(_objectSpread$a({}, defaultLightTheme), {}, {
+  colors: _objectSpread$a(_objectSpread$a({}, defaultLightTheme.colors), {}, {
     text: "#FFF",
     background: "#121212",
     border: "#333",
@@ -268,8 +268,8 @@ var useToggleColorMode = function useToggleColorMode() {
 };
 
 var _excluded$8 = ["variant", "style", "children"];
-function ownKeys$a(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$a(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$a(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$a(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$9(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$9(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$9(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$9(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Text = function Text(_ref) {
   var _ref$variant = _ref.variant,
     variant = _ref$variant === void 0 ? 'body' : _ref$variant,
@@ -297,14 +297,14 @@ var Text = function Text(_ref) {
       color: theme.colors.muted
     }
   });
-  return /*#__PURE__*/React.createElement(Text$1, _objectSpread$a({
+  return /*#__PURE__*/React.createElement(Text$1, _objectSpread$9({
     style: [styles[variant], style]
   }, props), children);
 };
 
 var _excluded$7 = ["children", "bg", "p", "style"];
-function ownKeys$9(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$9(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$9(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$9(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$8(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$8(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$8(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Box = function Box(_ref) {
   var children = _ref.children,
     bg = _ref.bg,
@@ -318,7 +318,7 @@ var Box = function Box(_ref) {
       padding: p ? theme.spacing[p] : undefined
     }
   });
-  return /*#__PURE__*/React.createElement(View, _objectSpread$9({
+  return /*#__PURE__*/React.createElement(View, _objectSpread$8({
     style: [themedStyle.box, style]
   }, props), children);
 };
@@ -368,8 +368,8 @@ var Button = function Button(_ref) {
 };
 
 var _excluded$6 = ["label", "error", "style", "rightIcon", "leftIcon"];
-function ownKeys$8(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$8(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$8(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$8(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$7(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$7(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$7(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$7(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Input = function Input(_ref) {
   var label = _ref.label,
     error = _ref.error,
@@ -442,7 +442,7 @@ var Input = function Input(_ref) {
     style: styles.inputContainer
   }, /*#__PURE__*/React.createElement(View, {
     style: styles.leftIcon
-  }, leftIcon && leftIcon), /*#__PURE__*/React.createElement(TextInput, _objectSpread$8({
+  }, leftIcon && leftIcon), /*#__PURE__*/React.createElement(TextInput, _objectSpread$7({
     style: [rightIcon ? styles.inputWithrightIcon : styles.input, style],
     placeholderTextColor: theme.colors.muted
   }, props)), /*#__PURE__*/React.createElement(View, {
@@ -453,8 +453,8 @@ var Input = function Input(_ref) {
 };
 
 var _excluded$5 = ["label", "error"];
-function ownKeys$7(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$7(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$7(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$7(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$6(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$6(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$6(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$6(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var PasswordInput = function PasswordInput(_ref) {
   var label = _ref.label,
     error = _ref.error,
@@ -469,7 +469,7 @@ var PasswordInput = function PasswordInput(_ref) {
       return !prev;
     });
   };
-  return /*#__PURE__*/React.createElement(View, null, /*#__PURE__*/React.createElement(Input, _objectSpread$7({
+  return /*#__PURE__*/React.createElement(View, null, /*#__PURE__*/React.createElement(Input, _objectSpread$6({
     label: label,
     error: error,
     secureTextEntry: !visible,
@@ -484,8 +484,8 @@ var PasswordInput = function PasswordInput(_ref) {
 };
 
 var _excluded$4 = ["label", "error", "rows", "style"];
-function ownKeys$6(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$6(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$6(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$6(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$5(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$5(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$5(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$5(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var TextArea = function TextArea(_ref) {
   var label = _ref.label,
     error = _ref.error,
@@ -493,7 +493,7 @@ var TextArea = function TextArea(_ref) {
     rows = _ref$rows === void 0 ? 4 : _ref$rows,
     style = _ref.style,
     props = _objectWithoutProperties(_ref, _excluded$4);
-  return /*#__PURE__*/React.createElement(Input, _objectSpread$6({
+  return /*#__PURE__*/React.createElement(Input, _objectSpread$5({
     label: label,
     error: error,
     multiline: true,
@@ -2859,8 +2859,8 @@ const s=(e,s,o)=>{if(e&&"reportValidity"in e){const r=get(o,s);e.setCustomValidi
 
 function o(o,n,a){return void 0===n&&(n={}),void 0===a&&(a={}),function(s,i,c){try{return Promise.resolve(function(t,r){try{var u=(n.context&&"development"===process.env.NODE_ENV&&console.warn("You should not used the yup options context. Please, use the 'useForm' context object instead"),Promise.resolve(o["sync"===a.mode?"validateSync":"validate"](s,Object.assign({abortEarly:!1},n,{context:i}))).then(function(t){return c.shouldUseNativeValidation&&o$1({},c),{values:a.raw?s:t,errors:{}}}));}catch(e){return r(e)}return u&&u.then?u.then(void 0,r):u}(0,function(e){if(!e.inner)throw e;return {values:{},errors:r((o=e,n=!c.shouldUseNativeValidation&&"all"===c.criteriaMode,(o.inner||[]).reduce(function(e,t){if(e[t.path]||(e[t.path]={message:t.message,type:t.type}),n){var o=e[t.path].types,a=o&&o[t.type];e[t.path]=appendErrors(t.path,n,e,t.type,a?[].concat(a,t.message):t.message);}return e},{})),c)};var o,n;}))}catch(e){return Promise.reject(e)}}}
 
-function ownKeys$5(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$5(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$5(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$5(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var FormProvider = function FormProvider(_ref) {
   var defaultValues = _ref.defaultValues,
     children = _ref.children,
@@ -2870,12 +2870,12 @@ var FormProvider = function FormProvider(_ref) {
     mode: 'onChange',
     resolver: schema ? o(schema) : undefined
   });
-  return /*#__PURE__*/React.createElement(FormProvider$1, _objectSpread$5({}, methods), children);
+  return /*#__PURE__*/React.createElement(FormProvider$1, _objectSpread$4({}, methods), children);
 };
 
 var _excluded$3 = ["name", "control", "rules"];
-function ownKeys$4(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$4(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$4(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$4(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$3(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$3(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$3(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var ControlledInput = function ControlledInput(_ref) {
   var name = _ref.name,
     control = _ref.control,
@@ -2892,7 +2892,7 @@ var ControlledInput = function ControlledInput(_ref) {
         onBlur = _ref2$field.onBlur,
         value = _ref2$field.value,
         fieldState = _ref2.fieldState;
-      return /*#__PURE__*/React.createElement(Input, _objectSpread$4({
+      return /*#__PURE__*/React.createElement(Input, _objectSpread$3({
         onChangeText: onChange,
         onBlur: onBlur,
         value: value,
@@ -2982,8 +2982,8 @@ var styles = StyleSheet.create({
 });
 
 var _excluded$2 = ["name", "control", "rules", "options"];
-function ownKeys$3(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$3(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$3(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$3(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var ControlledSelect = function ControlledSelect(_ref) {
   var name = _ref.name,
     control = _ref.control,
@@ -3000,7 +3000,7 @@ var ControlledSelect = function ControlledSelect(_ref) {
         onChange = _ref2$field.onChange,
         value = _ref2$field.value,
         fieldState = _ref2.fieldState;
-      return /*#__PURE__*/React.createElement(Select, _objectSpread$3({
+      return /*#__PURE__*/React.createElement(Select, _objectSpread$2({
         options: options,
         onChange: onChange,
         value: value,
@@ -3208,8 +3208,6 @@ var Switch = function Switch(_ref) {
   }, error));
 };
 
-function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 var Slider = function Slider(_ref) {
   var label = _ref.label,
     value = _ref.value,
@@ -3221,36 +3219,54 @@ var Slider = function Slider(_ref) {
     _ref$step = _ref.step,
     step = _ref$step === void 0 ? 1 : _ref$step,
     error = _ref.error,
-    disabled = _ref.disabled;
+    disabled = _ref.disabled,
+    _ref$showTooltip = _ref.showTooltip,
+    showTooltip = _ref$showTooltip === void 0 ? false : _ref$showTooltip;
   var theme = useTheme();
-  var _React$useState = React.useState(0),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    sliderWidth = _React$useState2[0],
-    setSliderWidth = _React$useState2[1];
+  var _useState = useState(0),
+    _useState2 = _slicedToArray(_useState, 2),
+    sliderWidth = _useState2[0],
+    setSliderWidth = _useState2[1];
+  var animatedValue = useRef(new Animated.Value(0)).current;
   var clamp = function clamp(val) {
     return Math.min(Math.max(val, min), max);
   };
-  var panResponder = React.useRef(PanResponder.create({
-    onStartShouldSetPanResponder: function onStartShouldSetPanResponder() {
-      return !disabled;
-    },
-    onMoveShouldSetPanResponder: function onMoveShouldSetPanResponder() {
-      return !disabled;
-    },
-    onPanResponderMove: function onPanResponderMove(e, gestureState) {
-      var relativeX = gestureState.moveX - gestureState.x0;
-      var percent = Math.min(Math.max(relativeX / sliderWidth, 0), 1);
-      var newValue = Math.round((min + percent * (max - min)) / step) * step;
-      onChange(clamp(newValue));
-    }
-  })).current;
-  var handleLayout = useCallback(function (e) {
-    setSliderWidth(e.nativeEvent.layout.width);
-  }, []);
-  var getThumbPosition = function getThumbPosition() {
-    var ratio = (value - min) / (max - min);
-    return Math.max(0, Math.min(ratio * sliderWidth, sliderWidth));
+  var getPositionForValue = function getPositionForValue(val) {
+    var ratio = (val - min) / (max - min);
+    return ratio * sliderWidth;
   };
+  var getValueForPosition = function getValueForPosition(pos) {
+    var ratio = Math.min(Math.max(pos / sliderWidth, 0), 1);
+    var rawValue = min + ratio * (max - min);
+    return Math.round(rawValue / step) * step;
+  };
+  var handleTouch = function handleTouch(e) {
+    if (sliderWidth === 0 || disabled) return;
+    var touchX = e.nativeEvent.pageX;
+    var trackElement = e.target;
+    trackElement.measure(function (x, y, width, height, pageX, pageY) {
+      var relativeX = touchX - pageX;
+      var clamped = clamp(getValueForPosition(relativeX));
+      onChange(clamped);
+      animatedValue.setValue(getPositionForValue(clamped));
+    });
+  };
+  useEffect(function () {
+    if (sliderWidth === 0) return;
+    var pos = getPositionForValue(value);
+    Animated.timing(animatedValue, {
+      toValue: pos,
+      duration: 150,
+      useNativeDriver: false
+    }).start();
+  }, [value, sliderWidth, animatedValue]);
+  var handleLayout = useCallback(function (e) {
+    var width = e.nativeEvent.layout.width;
+    setSliderWidth(width);
+    if (width > 0) {
+      animatedValue.setValue(getPositionForValue(value));
+    }
+  }, [value, animatedValue]);
   var styles = StyleSheet.create({
     container: {
       marginBottom: theme.spacing.md
@@ -3261,11 +3277,12 @@ var Slider = function Slider(_ref) {
       color: theme.colors.text
     },
     track: {
-      height: 6,
-      borderRadius: 3,
-      backgroundColor: theme.colors.border,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: 'transparent',
+      justifyContent: 'center',
       position: 'relative',
-      justifyContent: 'center'
+      alignItems: 'center'
     },
     fill: {
       height: 6,
@@ -3273,17 +3290,40 @@ var Slider = function Slider(_ref) {
       backgroundColor: theme.colors.primary,
       position: 'absolute',
       left: 0,
-      top: 0,
-      bottom: 0
+      top: 17,
+      bottom: 17
     },
     thumb: {
       position: 'absolute',
-      width: 20,
-      height: 20,
-      borderRadius: 10,
+      width: 24,
+      height: 24,
+      borderRadius: 12,
       backgroundColor: theme.colors.primary,
-      top: -7,
-      marginLeft: -10
+      top: 8,
+      marginLeft: -12,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 3
+    },
+    tooltipContainer: {
+      position: 'absolute',
+      bottom: 30,
+      transform: [{
+        translateX: -20
+      }],
+      backgroundColor: theme.colors.primary,
+      paddingHorizontal: 8,
+      paddingVertical: 2,
+      borderRadius: 4
+    },
+    tooltipText: {
+      color: 'white',
+      fontSize: 12
     },
     error: {
       color: 'red',
@@ -3295,16 +3335,24 @@ var Slider = function Slider(_ref) {
     style: styles.container
   }, label && /*#__PURE__*/React.createElement(Text$1, {
     style: styles.label
-  }, label), /*#__PURE__*/React.createElement(View, _objectSpread$2({
+  }, label), /*#__PURE__*/React.createElement(TouchableOpacity, {
     style: styles.track,
-    onLayout: handleLayout
-  }, panResponder.panHandlers), /*#__PURE__*/React.createElement(View, {
+    onLayout: handleLayout,
+    onPress: handleTouch,
+    activeOpacity: 1
+  }, /*#__PURE__*/React.createElement(Animated.View, {
     style: [styles.fill, {
-      width: getThumbPosition()
+      width: animatedValue
     }]
-  }), /*#__PURE__*/React.createElement(View, {
+  }), showTooltip && (/*#__PURE__*/React.createElement(Animated.View, {
+    style: [styles.tooltipContainer, {
+      left: animatedValue
+    }]
+  }, /*#__PURE__*/React.createElement(Text$1, {
+    style: styles.tooltipText
+  }, value))), /*#__PURE__*/React.createElement(Animated.View, {
     style: [styles.thumb, {
-      left: getThumbPosition()
+      left: animatedValue
     }]
   })), error && /*#__PURE__*/React.createElement(Text$1, {
     style: styles.error
@@ -3754,7 +3802,7 @@ var TagInput = function TagInput(_ref) {
       borderRadius: 16
     },
     tagText: {
-      color: theme.colors.primary,
+      color: theme.colors.background,
       fontSize: theme.fontSizes.sm,
       marginRight: 6
     },
@@ -3793,7 +3841,7 @@ var TagInput = function TagInput(_ref) {
       style: styles.removeBtn
     }, /*#__PURE__*/React.createElement(Text$1, {
       style: {
-        color: theme.colors.primary
+        color: theme.colors.background
       }
     }, "\xD7")));
   }), /*#__PURE__*/React.createElement(TextInput, {
