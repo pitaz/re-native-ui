@@ -7,7 +7,7 @@ The React Native UI Library includes a powerful theming system that allows you t
 All components use the theme context provided by `ThemeProvider`. Wrap your app with this provider to enable theming:
 
 ```tsx
-import { ThemeProvider } from "react-native-ui";
+import { ThemeProvider } from "re-native-ui";
 
 export default function App() {
   return <ThemeProvider>{/* Your app content */}</ThemeProvider>;
@@ -53,7 +53,7 @@ The library comes with a default theme that includes:
 Components automatically use theme values for styling:
 
 ```tsx
-import { Box, Text, Button } from "react-native-ui";
+import { Box, Text, Button } from "re-native-ui";
 
 // Box uses theme spacing
 <Box p="md" bg="background">
@@ -71,7 +71,7 @@ import { Box, Text, Button } from "react-native-ui";
 The library supports dark mode out of the box. Use the `useToggleColorMode` hook to toggle between light and dark themes:
 
 ```tsx
-import { useToggleColorMode, Button } from "react-native-ui";
+import { useToggleColorMode, Button } from "re-native-ui";
 
 function ThemeToggle() {
   const toggleTheme = useToggleColorMode();
@@ -85,7 +85,7 @@ function ThemeToggle() {
 You can create custom themes by extending the default theme:
 
 ```tsx
-import { ThemeProvider, createTheme } from "react-native-ui";
+import { ThemeProvider, createTheme } from "re-native-ui";
 
 const customTheme = createTheme({
   colors: {
@@ -112,7 +112,7 @@ export default function App() {
 You can access the current theme in your components using the `useTheme` hook:
 
 ```tsx
-import { useTheme } from "react-native-ui";
+import { useTheme } from "re-native-ui";
 
 function MyComponent() {
   const theme = useTheme();
@@ -135,7 +135,7 @@ function MyComponent() {
 The theme system supports responsive design through breakpoints:
 
 ```tsx
-import { Box } from "react-native-ui";
+import { Box } from "re-native-ui";
 
 <Box p={{ xs: "sm", md: "lg" }} width={{ xs: "100%", md: "50%" }}>
   Responsive content

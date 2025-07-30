@@ -27,7 +27,7 @@ The `ControlledInput` component wraps the base `Input` component with React Hook
 ## Basic Usage
 
 ```tsx
-import { ControlledInput } from "react-native-ui";
+import { ControlledInput } from "re-native-ui";
 
 function MyForm() {
   return (
@@ -62,7 +62,7 @@ The `ControlledInput` component accepts all props from the base `Input` componen
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Button } from "react-native-ui";
+import { ControlledInput, Button } from "re-native-ui";
 
 function BasicControlledInput() {
   const { control, handleSubmit } = useForm({
@@ -120,7 +120,7 @@ function BasicControlledInput() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Button } from "react-native-ui";
+import { ControlledInput, Button } from "re-native-ui";
 
 function ValidatedInput() {
   const { control, handleSubmit } = useForm({
@@ -221,7 +221,7 @@ function ValidatedInput() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Button } from "react-native-ui";
+import { ControlledInput, Button } from "re-native-ui";
 
 function CustomValidationInput() {
   const { control, handleSubmit } = useForm({
@@ -304,7 +304,7 @@ function CustomValidationInput() {
 ```tsx
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Switch, Button } from "react-native-ui";
+import { ControlledInput, Switch, Button } from "re-native-ui";
 
 function ConditionalValidationInput() {
   const [hasPhone, setHasPhone] = useState(false);
@@ -392,7 +392,7 @@ function ConditionalValidationInput() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Button } from "react-native-ui";
+import { ControlledInput, Button } from "re-native-ui";
 
 function AsyncValidationInput() {
   const { control, handleSubmit } = useForm({
@@ -440,7 +440,7 @@ function AsyncValidationInput() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledInput, Button, Text } from "react-native-ui";
+import { ControlledInput, Button, Text } from "re-native-ui";
 
 function CustomErrorInput() {
   const {
@@ -489,7 +489,7 @@ function CustomErrorInput() {
 ```tsx
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { ControlledInput, Button } from "react-native-ui";
+import { ControlledInput, Button } from "re-native-ui";
 
 function FormWithContext() {
   const {

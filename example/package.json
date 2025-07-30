@@ -10,13 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-native": "0.80.2",
+    "@hookform/resolvers": "^3.9.0",
     "@react-native/new-app-screen": "0.80.2",
-    "react-native-ui": "file:../packages/ui",
+    "react": "19.1.0",
     "react-hook-form": "^7.61.1",
-    "yup": "^1.6.1",
-    "@hookform/resolvers": "^3.9.0"
+    "react-native": "0.80.2",
+    "react-native-ui": "file:../packages/ui",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

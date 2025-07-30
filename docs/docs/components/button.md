@@ -5,7 +5,7 @@ The Button component provides a customizable, accessible button with various sty
 ## Basic Usage
 
 ```tsx
-import { Button } from "react-native-ui";
+import { Button } from "re-native-ui";
 
 <Button onPress={() => console.log("Button pressed!")}>Click Me</Button>;
 ```

@@ -28,7 +28,7 @@ The `Accordion` component provides a way to show and hide content with smooth ex
 ## Basic Usage
 
 ```tsx
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function MyComponent() {
   return (
@@ -64,7 +64,7 @@ function MyComponent() {
 ```tsx
 import React from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function BasicAccordion() {
   return (
@@ -101,7 +101,7 @@ function BasicAccordion() {
 ```tsx
 import React from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function OpenAccordion() {
   return (
@@ -138,7 +138,7 @@ function OpenAccordion() {
 ```tsx
 import React from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function StyledAccordion() {
   return (
@@ -207,7 +207,7 @@ function StyledAccordion() {
 ```tsx
 import React from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function CustomArrowAccordion() {
   const CustomArrow = ({ isOpen }: { isOpen: boolean }) => (
@@ -254,7 +254,7 @@ function CustomArrowAccordion() {
 ```tsx
 import React from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function MultipleAccordions() {
   return (
@@ -304,7 +304,7 @@ function MultipleAccordions() {
 ```tsx
 import React, { useState } from "react";
 import { Text } from "react-native";
-import { Accordion } from "react-native-ui";
+import { Accordion } from "re-native-ui";
 
 function AccordionWithCallback() {
   const [openSections, setOpenSections] = useState<string[]>([]);
@@ -338,7 +338,7 @@ function AccordionWithCallback() {
 ```tsx
 import React from "react";
 import { Text, View } from "react-native";
-import { Accordion, Button, Divider } from "react-native-ui";
+import { Accordion, Button, Divider } from "re-native-ui";
 
 function ComplexAccordion() {
   return (

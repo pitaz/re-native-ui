@@ -8,7 +8,7 @@ description: A styled text input component
 ## Usage
 
 ```tsx
-import { Input } from "react-native-ui";
+import { Input } from "re-native-ui";
 
 <Input
   label="Email"

@@ -27,7 +27,7 @@ The `FormProvider` component provides a wrapper around React Hook Form's `FormPr
 ## Basic Usage
 
 ```tsx
-import { FormProvider } from "react-native-ui";
+import { FormProvider } from "re-native-ui";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -61,7 +61,7 @@ function MyForm() {
 
 ```tsx
 import React from "react";
-import { FormProvider, ControlledInput, Button } from "react-native-ui";
+import { FormProvider, ControlledInput, Button } from "re-native-ui";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -131,7 +131,7 @@ import {
   ControlledInput,
   ControlledSelect,
   Button,
-} from "react-native-ui";
+} from "re-native-ui";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -264,7 +264,7 @@ function ComplexForm() {
 
 ```tsx
 import React from "react";
-import { FormProvider, ControlledInput, Button } from "react-native-ui";
+import { FormProvider, ControlledInput, Button } from "re-native-ui";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -383,7 +383,7 @@ function CustomValidationForm() {
 
 ```tsx
 import React from "react";
-import { FormProvider, ControlledInput, Button } from "react-native-ui";
+import { FormProvider, ControlledInput, Button } from "re-native-ui";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -428,7 +428,7 @@ function FormWithSubmission() {
 
 ```tsx
 import React, { useState } from "react";
-import { FormProvider, ControlledInput, Switch, Button } from "react-native-ui";
+import { FormProvider, ControlledInput, Switch, Button } from "re-native-ui";
 import * as yup from "yup";
 
 function ConditionalValidationForm() {
@@ -478,7 +478,7 @@ The `FormProvider` component is built on top of React Hook Form and provides acc
 
 ```tsx
 import React from "react";
-import { FormProvider, ControlledInput, Button } from "react-native-ui";
+import { FormProvider, ControlledInput, Button } from "re-native-ui";
 import { useFormContext } from "react-hook-form";
 
 function FormWithHookForm() {

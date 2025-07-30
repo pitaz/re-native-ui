@@ -10,7 +10,7 @@ The MaskedInput component provides automatic formatting for text input fields, m
 ## Basic Usage
 
 ```tsx
-import { MaskedInput } from "react-native-ui";
+import { MaskedInput } from "re-native-ui";
 
 const [phoneNumber, setPhoneNumber] = useState("");
 

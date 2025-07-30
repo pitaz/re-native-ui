@@ -10,7 +10,7 @@ The TextArea component provides a multi-line text input field for longer text co
 ## Basic Usage
 
 ```tsx
-import { TextArea } from "react-native-ui";
+import { TextArea } from "re-native-ui";
 
 const [message, setMessage] = useState("");
 

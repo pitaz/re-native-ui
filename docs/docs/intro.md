@@ -2,44 +2,44 @@
 sidebar_position: 1
 ---
 
-# React Native UI Library
+# Re Native UI
 
 A comprehensive, customizable UI component library for React Native applications that provides everything you need to build beautiful, accessible, and performant mobile apps.
 
-## Why React Native UI Library?
+## Why Re Native UI?
 
 Building a React Native app from scratch can be time-consuming and challenging. This library provides:
 
-- **🚀 Rapid Development**: Pre-built, production-ready components that work out of the box
-- **🎨 Consistent Design**: Unified design system with customizable theming
-- **♿ Accessibility First**: WCAG compliant components with proper screen reader support
-- **📱 Native Performance**: Optimized for React Native with minimal overhead
-- **🔧 Developer Experience**: Full TypeScript support, comprehensive documentation, and intuitive APIs
-- **🎯 Flexible & Extensible**: Easy to customize and extend for your specific needs
+- **Rapid Development**: Pre-built, production-ready components that work out of the box
+- **Consistent Design**: Unified design system with customizable theming
+- **Accessibility First**: WCAG compliant components with proper screen reader support
+- **Native Performance**: Optimized for React Native with minimal overhead
+- **Developer Experience**: Full TypeScript support, comprehensive documentation, and intuitive APIs
+- **Flexible & Extensible**: Easy to customize and extend for your specific needs
 
 ## Features
 
-- 🎨 **Modern Design**: Clean, accessible components with modern design principles
-- 🌙 **Dark Mode**: Built-in dark mode support with easy theming
-- 📱 **React Native**: Optimized for React Native with native performance
-- ♿ **Accessible**: WCAG compliant components with proper accessibility features
-- 🎯 **TypeScript**: Full TypeScript support with comprehensive type definitions
-- 🔧 **Customizable**: Flexible theming system for easy customization
-- 📦 **Lightweight**: Tree-shakeable components to keep your bundle size small
-- 📋 **Form Management**: Built-in support for React Hook Form integration
-- 🎛️ **Rich Components**: Comprehensive set of 20+ components for all your UI needs
-- 🔄 **Theme Switching**: Dynamic theme switching with smooth transitions
+- **Modern Design**: Clean, accessible components with modern design principles
+- **Dark Mode**: Built-in dark mode support with easy theming
+- **React Native**: Optimized for React Native with native performance
+- **Accessible**: WCAG compliant components with proper accessibility features
+- **TypeScript**: Full TypeScript support with comprehensive type definitions
+- **Customizable**: Flexible theming system for easy customization
+- **Lightweight**: Tree-shakeable components to keep your bundle size small
+- **Form Management**: Built-in support for React Hook Form integration
+- **Rich Components**: Comprehensive set of 20+ components for all your UI needs
+- **Theme Switching**: Dynamic theme switching with smooth transitions
 
 ## Quick Start
 
 Install the library:
 
 ```bash
-npm install react-native-ui
+npm install re-native-ui
 # or
-yarn add react-native-ui
+yarn add re-native-ui
 # or
-pnpm add react-native-ui
+pnpm add re-native-ui
 ```
 
 Wrap your app with the ThemeProvider:
@@ -54,7 +54,7 @@ import {
   Text,
   Button,
   Stack,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function App() {
   return (
@@ -63,7 +63,7 @@ export default function App() {
         <Container>
           <Box p="md" bg="background">
             <Stack spacing={16}>
-              <Text variant="heading">Welcome to React Native UI</Text>
+              <Text variant="heading">Welcome to Re Native UI</Text>
               <Text variant="body">
                 Start building beautiful apps with our comprehensive component
                 library.
@@ -135,28 +135,28 @@ Advanced form handling:
 
 ## Key Benefits
 
-### 🎯 **Developer Experience**
+### **Developer Experience**
 
 - **Intuitive APIs**: Components follow consistent patterns and naming conventions
 - **TypeScript Support**: Full type safety with comprehensive type definitions
 - **Comprehensive Documentation**: Detailed guides, examples, and API references
 - **Hot Reload Friendly**: Components work seamlessly with React Native's hot reload
 
-### 🎨 **Design System**
+### **Design System**
 
 - **Consistent Theming**: Unified color palette, spacing, and typography
 - **Flexible Customization**: Easy to adapt to your brand's design language
 - **Dark Mode Ready**: Built-in support for light and dark themes
 - **Responsive Design**: Components adapt to different screen sizes
 
-### ♿ **Accessibility**
+### **Accessibility**
 
 - **Screen Reader Support**: Proper accessibility labels and hints
 - **Keyboard Navigation**: Full keyboard accessibility
 - **WCAG Compliance**: Components follow accessibility guidelines
 - **Focus Management**: Proper focus handling and visual indicators
 
-### 📱 **Performance**
+### **Performance**
 
 - **Optimized Rendering**: Efficient component updates and re-renders
 - **Minimal Bundle Size**: Tree-shakeable components reduce app size
@@ -180,7 +180,7 @@ import {
   TagInput,
   Button,
   Stack,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function ProfileForm() {
   const [formData, setFormData] = useState({
@@ -253,7 +253,7 @@ import {
   RadioGroup,
   Stack,
   Divider,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function SettingsScreen() {
   const [notifications, setNotifications] = useState(true);
@@ -345,15 +345,14 @@ Explore all available components in our [Components section](./components/input)
 
 ## Support
 
-- 📖 [Documentation](./getting-started)
-- 🐛 [Report Issues](https://github.com/pitaz/react-native-ui-library/issues)
-- 💬 [GitHub Discussions](https://github.com/pitaz/react-native-ui-library/discussions)
-- 📧 [Contact Us](mailto:support@react-native-ui.com)
+- [Documentation](./getting-started)
+- [Report Issues](https://github.com/pitaz/react-native-ui/issues)
+- [GitHub Discussions](https://github.com/pitaz/react-native-ui/discussions)
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/pitaz/react-native-ui-library/blob/main/CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/pitaz/react-native-ui/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/pitaz/react-native-ui-library/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/pitaz/react-native-ui/blob/main/LICENSE) file for details.

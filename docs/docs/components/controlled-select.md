@@ -28,7 +28,7 @@ The `ControlledSelect` component wraps the base `Select` component with React Ho
 ## Basic Usage
 
 ```tsx
-import { ControlledSelect } from "react-native-ui";
+import { ControlledSelect } from "re-native-ui";
 
 const options = [
   { label: "Option 1", value: "option1" },
@@ -69,7 +69,7 @@ The `ControlledSelect` component accepts all props from the base `Select` compon
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function BasicControlledSelect() {
   const { control, handleSubmit } = useForm({
@@ -140,7 +140,7 @@ function BasicControlledSelect() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function ValidatedSelect() {
   const { control, handleSubmit } = useForm({
@@ -251,7 +251,7 @@ function ValidatedSelect() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function CustomValidationSelect() {
   const { control, handleSubmit, watch } = useForm({
@@ -359,7 +359,7 @@ function CustomValidationSelect() {
 ```tsx
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function DynamicOptionsSelect() {
   const { control, handleSubmit } = useForm({
@@ -480,7 +480,7 @@ function DynamicOptionsSelect() {
 ```tsx
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function AsyncOptionsSelect() {
   const { control, handleSubmit } = useForm({
@@ -538,7 +538,7 @@ function AsyncOptionsSelect() {
 ```tsx
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { ControlledSelect, Button } from "react-native-ui";
+import { ControlledSelect, Button } from "re-native-ui";
 
 function FormWithContext() {
   const {
@@ -613,7 +613,7 @@ function FormWithContext() {
 ```tsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ControlledSelect, Button, Text } from "react-native-ui";
+import { ControlledSelect, Button, Text } from "re-native-ui";
 
 function CustomErrorSelect() {
   const {

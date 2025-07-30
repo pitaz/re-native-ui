@@ -10,7 +10,7 @@ The Spacer component provides a simple way to add consistent spacing between ele
 ## Basic Usage
 
 ```tsx
-import { Spacer } from "react-native-ui";
+import { Spacer } from "re-native-ui";
 
 <Text>First element</Text>
 <Spacer />

@@ -10,7 +10,7 @@ The DatePicker component provides a modal-based date selection interface with se
 ## Basic Usage
 
 ```tsx
-import { DatePicker } from "react-native-ui";
+import { DatePicker } from "re-native-ui";
 
 const [selectedDate, setSelectedDate] = useState(new Date());
 

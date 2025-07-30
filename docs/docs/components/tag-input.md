@@ -10,7 +10,7 @@ The TagInput component provides an interface for adding and removing multiple ta
 ## Basic Usage
 
 ```tsx
-import { TagInput } from "react-native-ui";
+import { TagInput } from "re-native-ui";
 
 const [tags, setTags] = useState(["react", "typescript"]);
 

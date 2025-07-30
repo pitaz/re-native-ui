@@ -10,7 +10,7 @@ The Select component provides a dropdown interface for selecting from a list of 
 ## Basic Usage
 
 ```tsx
-import { Select } from "react-native-ui";
+import { Select } from "re-native-ui";
 
 const [selectedValue, setSelectedValue] = useState("");
 

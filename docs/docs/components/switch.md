@@ -10,7 +10,7 @@ The Switch component provides a toggle switch for boolean values with customizab
 ## Basic Usage
 
 ```tsx
-import { Switch } from "react-native-ui";
+import { Switch } from "re-native-ui";
 
 const [isEnabled, setIsEnabled] = useState(false);
 

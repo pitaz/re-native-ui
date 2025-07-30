@@ -5,7 +5,7 @@ The Checkbox component provides a customizable checkbox input with proper access
 ## Basic Usage
 
 ```tsx
-import { Checkbox } from "react-native-ui";
+import { Checkbox } from "re-native-ui";
 
 const [isChecked, setIsChecked] = useState(false);
 
@@ -144,7 +144,7 @@ The Checkbox works well with form libraries like react-hook-form:
 
 ```tsx
 import { useForm, Controller } from "react-hook-form";
-import { Checkbox } from "react-native-ui";
+import { Checkbox } from "re-native-ui";
 
 const { control, handleSubmit } = useForm();
 

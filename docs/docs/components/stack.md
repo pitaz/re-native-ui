@@ -10,7 +10,7 @@ The Stack component provides a simple and flexible way to arrange elements with 
 ## Basic Usage
 
 ```tsx
-import { Stack } from "react-native-ui";
+import { Stack } from "re-native-ui";
 
 <Stack>
   <Text>First item</Text>

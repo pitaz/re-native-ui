@@ -10,7 +10,7 @@ The Text component provides styled text with predefined variants for consistent 
 ## Basic Usage
 
 ```tsx
-import { Text } from "react-native-ui";
+import { Text } from "re-native-ui";
 
 <Text>Default body text</Text>;
 ```

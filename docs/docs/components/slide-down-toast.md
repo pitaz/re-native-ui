@@ -29,7 +29,7 @@ The `SlideDownToast` component provides a way to display temporary notifications
 ## Basic Usage
 
 ```tsx
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function MyComponent() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -75,7 +75,7 @@ function MyComponent() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function BasicToast() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -122,7 +122,7 @@ function BasicToast() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function SuccessToast() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -171,7 +171,7 @@ function SuccessToast() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function ErrorToast() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -220,7 +220,7 @@ function ErrorToast() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function WarningToast() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -269,7 +269,7 @@ function WarningToast() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function CustomToast() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -335,7 +335,7 @@ function CustomToast() {
 ```tsx
 import React, { useState } from "react";
 import { Button, View } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function ToastWithDurations() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -388,7 +388,7 @@ function ToastWithDurations() {
 ```tsx
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function ToastWithActions() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -427,7 +427,7 @@ function ToastWithActions() {
 ```tsx
 import React, { useState } from "react";
 import { Button, View } from "react-native";
-import { SlideDownToast } from "react-native-ui";
+import { SlideDownToast } from "re-native-ui";
 
 function MultipleToastTypes() {
   const [currentToast, setCurrentToast] = useState<{

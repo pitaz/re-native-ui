@@ -10,7 +10,7 @@ The Container component provides a responsive wrapper for content with configura
 ## Basic Usage
 
 ```tsx
-import { Container } from "react-native-ui";
+import { Container } from "re-native-ui";
 
 <Container>
   <Text>Your content goes here</Text>
