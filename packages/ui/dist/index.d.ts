@@ -25,3 +25,6 @@ export * from "./components/TagInput/TagInput";
 export * from "./components/StepperInput/StepperInput";
 export * from "./components/SlideDownToast/SlideDownToast";
 export * from "./components/Accordion/Accordion";
+export * from "./components/Stepper/Stepper";
+export * from "./components/StaggeredGrid/StaggeredGrid";
+export * from "./components/Grid/Grid";

@@ -24,6 +24,12 @@ export declare const defaultLightTheme: {
         lg: number;
         xl: number;
     };
+    breakpoints: {
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+    };
 };
 export declare const defaultDarkTheme: {
     colors: {
@@ -46,6 +52,12 @@ export declare const defaultDarkTheme: {
     };
     fontSizes: {
         xs: number;
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+    };
+    breakpoints: {
         sm: number;
         md: number;
         lg: number;

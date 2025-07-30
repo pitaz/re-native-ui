@@ -9,606 +9,341 @@ import TabItem from '@theme/TabItem';
 
 # Snackbar
 
-A notification component that slides up from the bottom or top of the screen with optional action buttons.
+A toast notification component that displays brief messages to users. The Snackbar system includes a provider, hook, and individual snackbar component for flexible usage.
 
-## Overview
+## Import
 
-The `Snackbar` component provides a way to display temporary notifications that slide up from the bottom or top of the screen. It includes support for action buttons and can be used with a provider pattern for global snackbar management.
-
-## Features
-
-- **Smooth Animations**: Slides up from bottom or top with smooth transitions
-- **Multiple Types**: Success, error, info, and warning variants with different colors
-- **Action Buttons**: Optional action buttons for user interaction
-- **Position Control**: Can appear at top or bottom of screen
-- **Auto-dismiss**: Automatically hides after a configurable duration
-- **Provider Pattern**: Global snackbar management with context
-- **Hook Support**: Easy-to-use hook for showing snackbars
-- **Theme Integration**: Follows the design system theme
+```tsx
+import { Snackbar, SnackbarProvider, useSnackbar } from "react-native-ui";
+```
 
 ## Basic Usage
 
-### Direct Usage
+### Using SnackbarProvider and useSnackbar Hook
 
 ```tsx
-import { Snackbar } from "react-native-ui";
+import React from "react";
+import { SnackbarProvider, useSnackbar, Button } from "react-native-ui";
 
-function MyComponent() {
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
-
-  return (
-    <>
-      <Button onPress={() => setSnackbarVisible(true)}>Show Snackbar</Button>
-
-      {snackbarVisible && (
-        <Snackbar
-          message="This is a snackbar message"
-          type="info"
-          onClose={() => setSnackbarVisible(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-### With Provider Pattern
-
-```tsx
-import { SnackbarProvider, useSnackbar } from "react-native-ui";
-
-function App() {
-  return (
-    <SnackbarProvider>
-      <MyComponent />
-    </SnackbarProvider>
-  );
-}
-
-function MyComponent() {
+const MyComponent = () => {
   const { showSnackbar } = useSnackbar();
 
   const handleShowSnackbar = () => {
     showSnackbar({
-      message: "Operation completed successfully!",
+      message: "This is a success message!",
       type: "success",
       duration: 3000,
     });
   };
 
   return <Button onPress={handleShowSnackbar}>Show Snackbar</Button>;
-}
+};
+
+const App = () => {
+  return (
+    <SnackbarProvider>
+      <MyComponent />
+    </SnackbarProvider>
+  );
+};
 ```
 
-## Props
-
-### Snackbar Props
-
-| Prop            | Type                                          | Default      | Description                                 |
-| --------------- | --------------------------------------------- | ------------ | ------------------------------------------- |
-| `message`       | `string`                                      | **Required** | The message to display in the snackbar      |
-| `type`          | `'success' \| 'error' \| 'info' \| 'warning'` | `'info'`     | The visual type of the snackbar             |
-| `actionLabel`   | `string`                                      | `undefined`  | Label for the action button                 |
-| `onActionPress` | `() => void`                                  | `undefined`  | Callback for action button press            |
-| `duration`      | `number`                                      | `3000`       | Duration in milliseconds before auto-hiding |
-| `onClose`       | `() => void`                                  | `undefined`  | Callback fired when snackbar is closed      |
-| `position`      | `'top' \| 'bottom'`                           | `'bottom'`   | Position of the snackbar on screen          |
-
-### SnackbarProvider Props
-
-| Prop       | Type              | Default      | Description              |
-| ---------- | ----------------- | ------------ | ------------------------ |
-| `children` | `React.ReactNode` | **Required** | Child components to wrap |
-
-## Examples
-
-### Basic Snackbar
-
-<Tabs>
-<TabItem value="tsx" label="TSX">
+### Using Snackbar Component Directly
 
 ```tsx
 import React, { useState } from "react";
-import { Button } from "react-native";
-import { Snackbar } from "react-native-ui";
+import { Snackbar, Button } from "react-native-ui";
 
-function BasicSnackbar() {
+const MyComponent = () => {
   const [visible, setVisible] = useState(false);
 
   return (
     <>
-      <Button onPress={() => setVisible(true)} title="Show Snackbar" />
-
-      {visible && (
-        <Snackbar
-          message="This is a basic snackbar message"
-          type="info"
-          onClose={() => setVisible(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem value="preview" label="Preview">
-
-```tsx
-<Snackbar
-  message="This is a basic snackbar message"
-  type="info"
-  onClose={() => {}}
-/>
-```
-
-</TabItem>
-</Tabs>
-
-### Success Snackbar
-
-<Tabs>
-<TabItem value="tsx" label="TSX">
-
-```tsx
-import React, { useState } from "react";
-import { Button } from "react-native";
-import { Snackbar } from "react-native-ui";
-
-function SuccessSnackbar() {
-  const [visible, setVisible] = useState(false);
-
-  return (
-    <>
-      <Button onPress={() => setVisible(true)} title="Show Success" />
-
-      {visible && (
-        <Snackbar
-          message="Data saved successfully!"
-          type="success"
-          duration={2000}
-          onClose={() => setVisible(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem value="preview" label="Preview">
-
-```tsx
-<Snackbar
-  message="Data saved successfully!"
-  type="success"
-  duration={2000}
-  onClose={() => {}}
-/>
-```
-
-</TabItem>
-</Tabs>
-
-### Snackbar with Action
-
-<Tabs>
-<TabItem value="tsx" label="TSX">
-
-```tsx
-import React, { useState } from "react";
-import { Button } from "react-native";
-import { Snackbar } from "react-native-ui";
-
-function SnackbarWithAction() {
-  const [visible, setVisible] = useState(false);
-
-  const handleAction = () => {
-    console.log("Action pressed!");
-    setVisible(false);
-  };
-
-  return (
-    <>
-      <Button onPress={() => setVisible(true)} title="Show with Action" />
-
-      {visible && (
-        <Snackbar
-          message="Item deleted from cart"
-          type="info"
-          actionLabel="UNDO"
-          onActionPress={handleAction}
-          onClose={() => setVisible(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem value="preview" label="Preview">
-
-```tsx
-<Snackbar
-  message="Item deleted from cart"
-  type="info"
-  actionLabel="UNDO"
-  onActionPress={() => {}}
-  onClose={() => {}}
-/>
-```
-
-</TabItem>
-</Tabs>
-
-### Top Position Snackbar
-
-<Tabs>
-<TabItem value="tsx" label="TSX">
-
-```tsx
-import React, { useState } from "react";
-import { Button } from "react-native";
-import { Snackbar } from "react-native-ui";
-
-function TopSnackbar() {
-  const [visible, setVisible] = useState(false);
-
-  return (
-    <>
-      <Button onPress={() => setVisible(true)} title="Show Top Snackbar" />
-
-      {visible && (
-        <Snackbar
-          message="New message received"
-          type="info"
-          position="top"
-          onClose={() => setVisible(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-</TabItem>
-<TabItem value="preview" label="Preview">
-
-```tsx
-<Snackbar
-  message="New message received"
-  type="info"
-  position="top"
-  onClose={() => {}}
-/>
-```
-
-</TabItem>
-</Tabs>
-
-### Using Provider Pattern
-
-<Tabs>
-<TabItem value="tsx" label="TSX">
-
-```tsx
-import React from "react";
-import { Button, View } from "react-native";
-import { SnackbarProvider, useSnackbar } from "react-native-ui";
-
-function SnackbarDemo() {
-  return (
-    <SnackbarProvider>
-      <SnackbarButtons />
-    </SnackbarProvider>
-  );
-}
-
-function SnackbarButtons() {
-  const { showSnackbar } = useSnackbar();
-
-  const showSuccess = () => {
-    showSnackbar({
-      message: "Operation completed successfully!",
-      type: "success",
-      duration: 3000,
-    });
-  };
-
-  const showError = () => {
-    showSnackbar({
-      message: "An error occurred. Please try again.",
-      type: "error",
-      duration: 4000,
-    });
-  };
-
-  const showWithAction = () => {
-    showSnackbar({
-      message: "Item removed from favorites",
-      type: "info",
-      actionLabel: "UNDO",
-      onActionPress: () => console.log("Undo pressed"),
-      duration: 5000,
-    });
-  };
-
-  return (
-    <View>
-      <Button onPress={showSuccess} title="Show Success" />
-      <Button onPress={showError} title="Show Error" />
-      <Button onPress={showWithAction} title="Show with Action" />
-    </View>
-  );
-}
-```
-
-</TabItem>
-<TabItem value="preview" label="Preview">
-
-```tsx
-<SnackbarProvider>
-  <View>
-    <Button onPress={() => {}} title="Show Success" />
-    <Button onPress={() => {}} title="Show Error" />
-    <Button onPress={() => {}} title="Show with Action" />
-  </View>
-</SnackbarProvider>
-```
-
-</TabItem>
-</Tabs>
-
-## Advanced Usage
-
-### Custom Snackbar Types
-
-```tsx
-import React from "react";
-import { Button, View } from "react-native";
-import { SnackbarProvider, useSnackbar } from "react-native-ui";
-
-function CustomSnackbarDemo() {
-  return (
-    <SnackbarProvider>
-      <CustomSnackbarButtons />
-    </SnackbarProvider>
-  );
-}
-
-function CustomSnackbarButtons() {
-  const { showSnackbar } = useSnackbar();
-
-  const showDifferentTypes = () => {
-    // Show success
-    setTimeout(() => {
-      showSnackbar({
-        message: "Success message",
-        type: "success",
-        duration: 2000,
-      });
-    }, 0);
-
-    // Show error after success
-    setTimeout(() => {
-      showSnackbar({
-        message: "Error message",
-        type: "error",
-        duration: 2000,
-      });
-    }, 2500);
-
-    // Show warning after error
-    setTimeout(() => {
-      showSnackbar({
-        message: "Warning message",
-        type: "warning",
-        duration: 2000,
-      });
-    }, 5000);
-  };
-
-  return (
-    <View>
-      <Button onPress={showDifferentTypes} title="Show All Types" />
-    </View>
-  );
-}
-```
-
-### Snackbar with Complex Actions
-
-```tsx
-import React, { useState } from "react";
-import { Button } from "react-native";
-import { SnackbarProvider, useSnackbar } from "react-native-ui";
-
-function ComplexSnackbarDemo() {
-  return (
-    <SnackbarProvider>
-      <ComplexSnackbarButtons />
-    </SnackbarProvider>
-  );
-}
-
-function ComplexSnackbarButtons() {
-  const { showSnackbar } = useSnackbar();
-  const [deletedItems, setDeletedItems] = useState<string[]>([]);
-
-  const deleteItem = (itemId: string) => {
-    // Simulate deletion
-    setDeletedItems((prev) => [...prev, itemId]);
-
-    showSnackbar({
-      message: `Item ${itemId} deleted`,
-      type: "info",
-      actionLabel: "UNDO",
-      onActionPress: () => {
-        // Undo deletion
-        setDeletedItems((prev) => prev.filter((id) => id !== itemId));
-        showSnackbar({
-          message: "Item restored",
-          type: "success",
-          duration: 2000,
-        });
-      },
-      duration: 5000,
-    });
-  };
-
-  return (
-    <>
-      <Button onPress={() => deleteItem("item-1")} title="Delete Item 1" />
-      <Button onPress={() => deleteItem("item-2")} title="Delete Item 2" />
-      <Text>Deleted items: {deletedItems.join(", ")}</Text>
-    </>
-  );
-}
-```
-
-### Snackbar with Form Validation
-
-```tsx
-import React, { useState } from "react";
-import { Button, TextInput } from "react-native";
-import { SnackbarProvider, useSnackbar } from "react-native-ui";
-
-function FormValidationDemo() {
-  return (
-    <SnackbarProvider>
-      <FormValidation />
-    </SnackbarProvider>
-  );
-}
-
-function FormValidation() {
-  const { showSnackbar } = useSnackbar();
-  const [email, setEmail] = useState("");
-
-  const validateEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!email) {
-      showSnackbar({
-        message: "Email is required",
-        type: "error",
-        duration: 3000,
-      });
-    } else if (!emailRegex.test(email)) {
-      showSnackbar({
-        message: "Please enter a valid email address",
-        type: "warning",
-        duration: 4000,
-      });
-    } else {
-      showSnackbar({
-        message: "Email is valid!",
-        type: "success",
-        duration: 2000,
-      });
-    }
-  };
-
-  return (
-    <>
-      <TextInput
-        placeholder="Enter email"
-        value={email}
-        onChangeText={setEmail}
-        style={{ borderWidth: 1, padding: 10, margin: 10 }}
+      <Button onPress={() => setVisible(true)}>Show Snackbar</Button>
+
+      <Snackbar
+        message="This is a message"
+        type="info"
+        visible={visible}
+        onClose={() => setVisible(false)}
+        duration={3000}
       />
-      <Button onPress={validateEmail} title="Validate Email" />
     </>
   );
-}
+};
 ```
 
-## Hooks
+## Components
 
-### useSnackbar
+### SnackbarProvider
 
-The `useSnackbar` hook provides access to the snackbar context and returns a `showSnackbar` function.
+A context provider that manages snackbar state and provides the `showSnackbar` function to child components.
 
-```tsx
-import { useSnackbar } from "react-native-ui";
+#### Props
 
-function MyComponent() {
-  const { showSnackbar } = useSnackbar();
+- **children**: `React.ReactNode` - Child components that will have access to the snackbar context
 
-  const handleSuccess = () => {
-    showSnackbar({
-      message: "Success!",
-      type: "success",
-      duration: 3000,
-    });
-  };
+### Snackbar
 
-  return <Button onPress={handleSuccess} title="Show Success" />;
-}
-```
+The individual snackbar component that displays the message.
 
-## Accessibility
+#### Props
 
-The `Snackbar` component includes proper accessibility features:
+| Prop            | Type                                          | Default    | Description                                 |
+| --------------- | --------------------------------------------- | ---------- | ------------------------------------------- |
+| `message`       | `string`                                      | -          | The message to display                      |
+| `type`          | `'success' \| 'error' \| 'info' \| 'warning'` | `'info'`   | The type of snackbar                        |
+| `actionLabel`   | `string`                                      | -          | Optional action button label                |
+| `onActionPress` | `() => void`                                  | -          | Callback when action button is pressed      |
+| `duration`      | `number`                                      | `3000`     | Duration in milliseconds before auto-hiding |
+| `onClose`       | `() => void`                                  | -          | Callback when snackbar closes               |
+| `position`      | `'top' \| 'bottom'`                           | `'bottom'` | Position of the snackbar                    |
 
-- **Screen Reader Support**: Proper accessibility labels and hints
-- **Touch Targets**: Adequate touch target sizes for action buttons
-- **Focus Management**: Proper focus handling during animations
-- **Status Announcements**: Can announce snackbar messages to screen readers
+### useSnackbar Hook
 
-## Best Practices
+A hook that provides access to the `showSnackbar` function.
 
-1. **Keep Messages Short**: Snackbar messages should be concise and clear
-2. **Use Appropriate Types**: Choose the right type for the message
-3. **Provide Actions When Needed**: Use action buttons for undo operations or important actions
-4. **Set Appropriate Duration**: Longer messages need more time to read
-5. **Don't Overuse**: Avoid showing too many snackbars in quick succession
-6. **Consider Position**: Use top position for important notifications, bottom for confirmations
+#### Returns
 
-## Related Components
+- **showSnackbar**: `(options: SnackbarOptions) => void` - Function to show a snackbar
 
-- **SlideDownToast** - Alternative notification component
-- **Button** - For triggering snackbar messages
-- **Container** - For wrapping snackbar-triggering content
-
-## API Reference
-
-### SnackbarProps
+#### SnackbarOptions
 
 ```tsx
-type SnackbarProps = {
+type SnackbarOptions = {
   message: string;
   type?: "success" | "error" | "info" | "warning";
   actionLabel?: string;
   onActionPress?: () => void;
   duration?: number;
-  onClose?: () => void;
   position?: "top" | "bottom";
 };
 ```
 
-### SnackbarProvider
+## Examples
+
+### Different Types of Snackbars
 
 ```tsx
-export const SnackbarProvider: React.FC<{ children: React.ReactNode }>;
-```
+const SnackbarTypes = () => {
+  const { showSnackbar } = useSnackbar();
 
-### useSnackbar Hook
+  return (
+    <Stack spacing="md">
+      <Button
+        onPress={() =>
+          showSnackbar({
+            message: "Operation completed successfully!",
+            type: "success",
+          })
+        }
+      >
+        Success Snackbar
+      </Button>
 
-```tsx
-export const useSnackbar = () => {
-  return {
-    showSnackbar: (options: SnackbarOptions) => void;
-  };
+      <Button
+        onPress={() =>
+          showSnackbar({
+            message: "Something went wrong!",
+            type: "error",
+          })
+        }
+      >
+        Error Snackbar
+      </Button>
+
+      <Button
+        onPress={() =>
+          showSnackbar({
+            message: "Please check your internet connection.",
+            type: "warning",
+          })
+        }
+      >
+        Warning Snackbar
+      </Button>
+
+      <Button
+        onPress={() =>
+          showSnackbar({
+            message: "New message received.",
+            type: "info",
+          })
+        }
+      >
+        Info Snackbar
+      </Button>
+    </Stack>
+  );
 };
 ```
 
-### Methods
+### Snackbar with Action Button
 
-The components don't expose any public methods beyond the standard React component lifecycle methods.
+```tsx
+const SnackbarWithAction = () => {
+  const { showSnackbar } = useSnackbar();
 
-### Events
+  const handleUndo = () => {
+    // Handle undo action
+    console.log("Undo pressed");
+  };
 
-- `onClose`: Fired when the snackbar is dismissed (either by timeout or user interaction)
-- `onActionPress`: Fired when the action button is pressed
+  return (
+    <Button
+      onPress={() =>
+        showSnackbar({
+          message: "Item deleted",
+          type: "success",
+          actionLabel: "UNDO",
+          onActionPress: handleUndo,
+          duration: 5000,
+        })
+      }
+    >
+      Delete Item
+    </Button>
+  );
+};
+```
+
+### Top Position Snackbar
+
+```tsx
+const TopSnackbar = () => {
+  const { showSnackbar } = useSnackbar();
+
+  return (
+    <Button
+      onPress={() =>
+        showSnackbar({
+          message: "New notification at the top!",
+          type: "info",
+          position: "top",
+          duration: 2000,
+        })
+      }
+    >
+      Show Top Snackbar
+    </Button>
+  );
+};
+```
+
+### Custom Duration
+
+```tsx
+const CustomDuration = () => {
+  const { showSnackbar } = useSnackbar();
+
+  return (
+    <Button
+      onPress={() =>
+        showSnackbar({
+          message: "This will stay visible for 10 seconds",
+          type: "info",
+          duration: 10000,
+        })
+      }
+    >
+      Long Duration Snackbar
+    </Button>
+  );
+};
+```
+
+### Direct Snackbar Usage
+
+```tsx
+const DirectSnackbar = () => {
+  const [visible, setVisible] = useState(false);
+  const [snackbarConfig, setSnackbarConfig] = useState({
+    message: "",
+    type: "info" as const,
+  });
+
+  const showSnackbar = (
+    message: string,
+    type: "success" | "error" | "info" | "warning" = "info"
+  ) => {
+    setSnackbarConfig({ message, type });
+    setVisible(true);
+  };
+
+  return (
+    <>
+      <Stack spacing="md">
+        <Button onPress={() => showSnackbar("Success message!", "success")}>
+          Success
+        </Button>
+        <Button onPress={() => showSnackbar("Error message!", "error")}>
+          Error
+        </Button>
+      </Stack>
+
+      <Snackbar
+        {...snackbarConfig}
+        visible={visible}
+        onClose={() => setVisible(false)}
+        duration={3000}
+      />
+    </>
+  );
+};
+```
+
+## Styling
+
+The Snackbar component uses predefined colors for different types:
+
+- **Success**: `#16a34a` (green)
+- **Error**: `#dc2626` (red)
+- **Info**: `#2563eb` (blue)
+- **Warning**: `#f59e0b` (orange)
+
+## Best Practices
+
+1. **Keep messages concise**: Snackbar messages should be brief and to the point
+2. **Use appropriate types**: Choose the right type based on the message context
+3. **Provide actions when needed**: Use action buttons for undo operations or additional actions
+4. **Consider duration**: Longer messages might need longer display times
+5. **Position strategically**: Use top position for notifications that don't interfere with user actions
+
+## Accessibility
+
+The Snackbar component includes proper accessibility features:
+
+- Screen reader announcements
+- Proper contrast ratios for text readability
+- Touch target sizes for action buttons
+
+## Integration with Forms
+
+```tsx
+const FormWithSnackbar = () => {
+  const { showSnackbar } = useSnackbar();
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      // Submit form logic
+      await submitForm(email);
+      showSnackbar("Form submitted successfully!", "success");
+    } catch (error) {
+      showSnackbar("Failed to submit form. Please try again.", "error");
+    }
+  };
+
+  return (
+    <Stack spacing="md">
+      <Input
+        label="Email"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter your email"
+      />
+      <Button onPress={handleSubmit}>Submit</Button>
+    </Stack>
+  );
+};
+```

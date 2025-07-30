@@ -135,13 +135,13 @@ var Container = function Container(_ref) {
     style = _ref.style,
     props = _objectWithoutProperties(_ref, _excluded$9);
   return /*#__PURE__*/React.createElement(reactNative.View, _objectSpread$c({
-    style: [styles$2.container, {
+    style: [styles$4.container, {
       padding: padding,
       maxWidth: maxWidth
     }, style]
   }, props), children);
 };
-var styles$2 = reactNative.StyleSheet.create({
+var styles$4 = reactNative.StyleSheet.create({
   container: {
     width: '100%',
     alignSelf: 'center'
@@ -180,17 +180,17 @@ function _iterableToArrayLimit(r, l) {
   }
 }
 
-function _arrayLikeToArray(r, a) {
+function _arrayLikeToArray$2(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
 }
 
-function _unsupportedIterableToArray(r, a) {
+function _unsupportedIterableToArray$2(r, a) {
   if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    if ("string" == typeof r) return _arrayLikeToArray$2(r, a);
     var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$2(r, a) : void 0;
   }
 }
 
@@ -199,7 +199,7 @@ function _nonIterableRest() {
 }
 
 function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray$2(r, e) || _nonIterableRest();
 }
 
 function ownKeys$b(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -229,6 +229,12 @@ var defaultLightTheme = {
     md: 16,
     lg: 20,
     xl: 24
+  },
+  breakpoints: {
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200
   }
 };
 var defaultDarkTheme = _objectSpread$b(_objectSpread$b({}, defaultLightTheme), {}, {
@@ -2938,13 +2944,13 @@ var Select = function Select(_ref) {
     transparent: true,
     animationType: "slide"
   }, /*#__PURE__*/React.createElement(reactNative.TouchableOpacity, {
-    style: styles$1.modalBackdrop,
+    style: styles$3.modalBackdrop,
     activeOpacity: 1,
     onPress: function onPress() {
       return setOpen(false);
     }
   }, /*#__PURE__*/React.createElement(reactNative.View, {
-    style: [styles$1.modalContent, {
+    style: [styles$3.modalContent, {
       backgroundColor: theme.colors.background
     }]
   }, /*#__PURE__*/React.createElement(reactNative.FlatList, {
@@ -2955,7 +2961,7 @@ var Select = function Select(_ref) {
     renderItem: function renderItem(_ref2) {
       var item = _ref2.item;
       return /*#__PURE__*/React.createElement(reactNative.TouchableOpacity, {
-        style: styles$1.option,
+        style: styles$3.option,
         onPress: function onPress() {
           onChange(item.value);
           setOpen(false);
@@ -2968,7 +2974,7 @@ var Select = function Select(_ref) {
     }
   })))));
 };
-var styles$1 = reactNative.StyleSheet.create({
+var styles$3 = reactNative.StyleSheet.create({
   modalBackdrop: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -3722,7 +3728,7 @@ var MaskedInput = function MaskedInput(_ref) {
 };
 
 function _arrayWithoutHoles(r) {
-  if (Array.isArray(r)) return _arrayLikeToArray(r);
+  if (Array.isArray(r)) return _arrayLikeToArray$2(r);
 }
 
 function _iterableToArray(r) {
@@ -3734,7 +3740,7 @@ function _nonIterableSpread() {
 }
 
 function _toConsumableArray(r) {
-  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray$2(r) || _nonIterableSpread();
 }
 
 var TagInput = function TagInput(_ref) {
@@ -4005,7 +4011,7 @@ var SlideDownToast = function SlideDownToast(_ref) {
     onPress: onHide
   }, /*#__PURE__*/React.createElement(reactNative.Animated.View, {
     onLayout: onLayout,
-    style: [styles.container, {
+    style: [styles$2.container, {
       transform: [{
         translateY: anim
       }],
@@ -4017,12 +4023,12 @@ var SlideDownToast = function SlideDownToast(_ref) {
       justifyContent: "center"
     }
   }, /*#__PURE__*/React.createElement(reactNative.Text, {
-    style: [styles.text, {
+    style: [styles$2.text, {
       color: theme.colors.text
     }, textStyle]
   }, message)))));
 };
-var styles = reactNative.StyleSheet.create({
+var styles$2 = reactNative.StyleSheet.create({
   container: {
     position: "absolute",
     top: 0,
@@ -4148,6 +4154,248 @@ var Accordion = function Accordion(_ref) {
   }, children)));
 };
 
+var Stepper = function Stepper(_ref) {
+  var steps = _ref.steps,
+    currentStep = _ref.currentStep,
+    onStepPress = _ref.onStepPress,
+    style = _ref.style,
+    stepStyle = _ref.stepStyle,
+    labelStyle = _ref.labelStyle,
+    connectorStyle = _ref.connectorStyle;
+  var theme = useTheme();
+  return /*#__PURE__*/React.createElement(reactNative.View, {
+    style: [styles$1.container, style]
+  }, steps.map(function (label, idx) {
+    var completed = idx < currentStep;
+    var active = idx === currentStep;
+    var circleColor = completed ? theme.colors.primary : active ? theme.colors.primary : theme.colors.border;
+    var textColor = active ? theme.colors.primary : theme.colors.text;
+    return /*#__PURE__*/React.createElement(React.Fragment, {
+      key: idx
+    }, /*#__PURE__*/React.createElement(reactNative.TouchableOpacity, {
+      onPress: function onPress() {
+        return onStepPress === null || onStepPress === void 0 ? void 0 : onStepPress(idx);
+      },
+      activeOpacity: onStepPress ? 0.6 : 1,
+      style: [styles$1.step, stepStyle]
+    }, /*#__PURE__*/React.createElement(reactNative.View, {
+      style: [styles$1.circle, {
+        borderColor: circleColor,
+        backgroundColor: active ? circleColor : "transparent"
+      }]
+    }), /*#__PURE__*/React.createElement(reactNative.Text, {
+      style: [styles$1.label, {
+        color: textColor
+      }, labelStyle]
+    }, label)), idx < steps.length - 1 && (/*#__PURE__*/React.createElement(reactNative.View, {
+      style: [styles$1.connector, {
+        backgroundColor: completed ? theme.colors.primary : theme.colors.border
+      }, connectorStyle]
+    })));
+  }));
+};
+var styles$1 = reactNative.StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  step: {
+    alignItems: "center",
+    flex: 1
+  },
+  circle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    marginBottom: 4
+  },
+  label: {
+    fontSize: 12,
+    textAlign: "center"
+  },
+  connector: {
+    height: 2,
+    flex: 1
+  }
+});
+
+function _createForOfIteratorHelper$1(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray$1(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray$1(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray$1(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0; } }
+function _arrayLikeToArray$1(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function useResponsiveValue$1(responsive, defaultValue) {
+  var _useWindowDimensions = reactNative.useWindowDimensions(),
+    width = _useWindowDimensions.width;
+  var theme = useTheme();
+  var points = Object.entries(theme.breakpoints).map(function (_ref) {
+    var _ref2 = _slicedToArray(_ref, 2),
+      k = _ref2[0],
+      v = _ref2[1];
+    return {
+      key: k,
+      minW: v
+    };
+  }).sort(function (a, b) {
+    return a.minW - b.minW;
+  });
+  var value = defaultValue;
+  var _iterator = _createForOfIteratorHelper$1(points),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var _step$value = _step.value,
+        key = _step$value.key,
+        minW = _step$value.minW;
+      if (width >= minW && (responsive === null || responsive === void 0 ? void 0 : responsive[key]) !== undefined) {
+        value = responsive[key];
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return value;
+}
+function StaggeredGrid(_ref3) {
+  var data = _ref3.data,
+    renderItem = _ref3.renderItem,
+    keyExtractor = _ref3.keyExtractor,
+    numColumns = _ref3.numColumns,
+    _ref3$spacing = _ref3.spacing,
+    spacing = _ref3$spacing === void 0 ? "sm" : _ref3$spacing,
+    getItemHeight = _ref3.getItemHeight,
+    style = _ref3.style;
+  var theme = useTheme();
+  var _useWindowDimensions2 = reactNative.useWindowDimensions(),
+    screenW = _useWindowDimensions2.width;
+  var cols = typeof numColumns === "number" ? numColumns : useResponsiveValue$1(numColumns, 2);
+  var gap = typeof spacing === "number" ? spacing : theme.spacing[spacing];
+  var columnGutter = gap;
+  var columnWidth = (screenW - columnGutter * (cols - 1)) / cols;
+  // Build columns by shortest-first (waterfall)
+  var columns = Array.from({
+    length: cols
+  }, function () {
+    return [];
+  });
+  var heights = Array(cols).fill(0);
+  data.forEach(function (item, index) {
+    var h = getItemHeight(item, columnWidth);
+    var col = heights.indexOf(Math.min.apply(Math, _toConsumableArray(heights)));
+    columns[col].push({
+      item: item,
+      index: index,
+      height: h
+    });
+    heights[col] += h + gap;
+  });
+  return /*#__PURE__*/React.createElement(reactNative.ScrollView, {
+    contentContainerStyle: [styles.wrapper, style],
+    showsVerticalScrollIndicator: false
+  }, /*#__PURE__*/React.createElement(reactNative.View, {
+    style: [styles.row, {
+      marginHorizontal: -gap / 2
+    }]
+  }, columns.map(function (colItems, colIdx) {
+    return /*#__PURE__*/React.createElement(reactNative.View, {
+      key: colIdx,
+      style: {
+        flex: 1,
+        paddingHorizontal: gap / 2
+      }
+    }, colItems.map(function (_ref4) {
+      var item = _ref4.item,
+        idx = _ref4.index;
+      return /*#__PURE__*/React.createElement(reactNative.View, {
+        key: keyExtractor(item, idx),
+        style: {
+          marginBottom: gap
+        }
+      }, renderItem({
+        item: item,
+        index: idx
+      }));
+    }));
+  })));
+}
+var styles = reactNative.StyleSheet.create({
+  wrapper: {
+    width: "100%"
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "flex-start"
+  }
+});
+
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function useResponsiveValue(responsive, defaultValue) {
+  var _useWindowDimensions = reactNative.useWindowDimensions(),
+    width = _useWindowDimensions.width;
+  var theme = useTheme();
+  var points = Object.entries(theme.breakpoints).sort(function (_ref, _ref2) {
+    var _ref3 = _slicedToArray(_ref, 2),
+      a = _ref3[1];
+    var _ref4 = _slicedToArray(_ref2, 2),
+      b = _ref4[1];
+    return a - b;
+  });
+  var value = defaultValue;
+  var _iterator = _createForOfIteratorHelper(points),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var _step$value = _slicedToArray(_step.value, 2),
+        key = _step$value[0],
+        minW = _step$value[1];
+      if (width >= minW && (responsive === null || responsive === void 0 ? void 0 : responsive[key]) !== undefined) {
+        value = responsive[key];
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return value;
+}
+function GridList(_ref5) {
+  var data = _ref5.data,
+    _renderItem = _ref5.renderItem,
+    keyExtractor = _ref5.keyExtractor,
+    numColumns = _ref5.numColumns,
+    _ref5$spacing = _ref5.spacing,
+    spacing = _ref5$spacing === void 0 ? "sm" : _ref5$spacing,
+    style = _ref5.style;
+  var theme = useTheme();
+  var cols = typeof numColumns === "number" ? numColumns : useResponsiveValue(numColumns, 1);
+  var gap = typeof spacing === "number" ? spacing : theme.spacing[spacing];
+  var half = gap / 2;
+  return /*#__PURE__*/React.createElement(reactNative.FlatList, {
+    data: data,
+    keyExtractor: keyExtractor,
+    numColumns: cols,
+    contentContainerStyle: [{
+      margin: -half
+    }, style],
+    columnWrapperStyle: {
+      marginBottom: gap
+    },
+    renderItem: function renderItem(info) {
+      return /*#__PURE__*/React.createElement(reactNative.View, {
+        style: {
+          flex: 1,
+          padding: half
+        }
+      }, _renderItem(info));
+    }
+  });
+}
+reactNative.StyleSheet.create({});
+
 exports.Accordion = Accordion;
 exports.Box = Box;
 exports.Button = Button;
@@ -4158,6 +4406,7 @@ exports.ControlledSelect = ControlledSelect;
 exports.DatePicker = DatePicker;
 exports.Divider = Divider;
 exports.FormProvider = FormProvider;
+exports.GridList = GridList;
 exports.Input = Input;
 exports.MaskedInput = MaskedInput;
 exports.OTPInput = OTPInput;
@@ -4168,6 +4417,8 @@ exports.SlideDownToast = SlideDownToast;
 exports.Slider = Slider;
 exports.Spacer = Spacer;
 exports.Stack = Stack;
+exports.StaggeredGrid = StaggeredGrid;
+exports.Stepper = Stepper;
 exports.StepperInput = StepperInput;
 exports.Switch = Switch;
 exports.TagInput = TagInput;
