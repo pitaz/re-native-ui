@@ -6,6 +6,8 @@ export declare const defaultLightTheme: {
         muted: string;
         border: string;
         error: string;
+        success: string;
+        warning: string;
     };
     mode: "light";
     spacing: {
@@ -22,6 +24,12 @@ export declare const defaultLightTheme: {
         lg: number;
         xl: number;
     };
+    breakpoints: {
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+    };
 };
 export declare const defaultDarkTheme: {
     colors: {
@@ -31,6 +39,8 @@ export declare const defaultDarkTheme: {
         muted: string;
         primary: string;
         error: string;
+        success: string;
+        warning: string;
     };
     mode: "dark";
     spacing: {
@@ -42,6 +52,12 @@ export declare const defaultDarkTheme: {
     };
     fontSizes: {
         xs: number;
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+    };
+    breakpoints: {
         sm: number;
         md: number;
         lg: number;

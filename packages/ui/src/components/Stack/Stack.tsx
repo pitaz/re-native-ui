@@ -1,20 +1,20 @@
-import React from 'react';
-import { View, ViewStyle } from 'react-native';
+import React from "react";
+import { View, ViewStyle } from "react-native";
 
 type StackProps = {
   children: React.ReactNode[];
-  direction?: 'row' | 'column';
+  direction?: "row" | "column";
   spacing?: number;
   style?: ViewStyle;
 };
 
 export const Stack: React.FC<StackProps> = ({
   children,
-  direction = 'column',
+  direction = "column",
   spacing = 8,
   style,
 }) => {
-  const isRow = direction === 'row';
+  const isRow = direction === "row";
 
   return (
     <View style={[{ flexDirection: direction }, style]}>

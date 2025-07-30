@@ -7220,6 +7220,11 @@ rc@1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-docgen-typescript@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-2.4.0.tgz#033428b4a6a639d050ac8baf2a5195c596521713"
+  integrity sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==
+
 react-dom@^19.0.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"

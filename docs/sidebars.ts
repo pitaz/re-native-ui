@@ -1,3 +1,4 @@
+// @ts-ignore
 import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -24,29 +25,62 @@ const sidebars: SidebarsConfig = {
     "theming",
     {
       type: "category",
-      label: "Components",
+      label: "Layout Components",
       collapsible: true,
       items: [
         "components/container",
         "components/box",
         "components/stack",
-        "components/text",
         "components/spacer",
         "components/divider",
-        "components/button",
+      ],
+    },
+    {
+      type: "category",
+      label: "Typography",
+      collapsible: true,
+      items: ["components/text"],
+    },
+    {
+      type: "category",
+      label: "Form Components",
+      collapsible: true,
+      items: [
         "components/input",
+        "components/password-input",
         "components/text-area",
+        "components/select",
         "components/checkbox",
         "components/switch",
         "components/radio-group",
-        "components/select",
         "components/slider",
-        "components/otp-input",
+        "components/stepper-input",
         "components/date-picker",
         "components/masked-input",
         "components/tag-input",
-        "components/stepper-input",
-        "components/search-input",
+        "components/otp-input",
+      ],
+    },
+    {
+      type: "category",
+      label: "Interactive Components",
+      collapsible: true,
+      items: ["components/button", "components/accordion"],
+    },
+    {
+      type: "category",
+      label: "Feedback Components",
+      collapsible: true,
+      items: ["components/slide-down-toast", "components/snackbar"],
+    },
+    {
+      type: "category",
+      label: "Form Management",
+      collapsible: true,
+      items: [
+        "components/form",
+        "components/controlled-input",
+        "components/controlled-select",
       ],
     },
   ],

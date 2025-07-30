@@ -1,8 +1,8 @@
-import React from 'react';
-import { ViewStyle } from 'react-native';
+import React from "react";
+import { ViewStyle } from "react-native";
 type StackProps = {
     children: React.ReactNode[];
-    direction?: 'row' | 'column';
+    direction?: "row" | "column";
     spacing?: number;
     style?: ViewStyle;
 };
