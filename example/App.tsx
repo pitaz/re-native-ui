@@ -30,16 +30,16 @@ import {
   MaskedInput,
   TagInput,
   OTPInput,
-  Slider
+  Slider,
+  SlideDownToast,
 } from 'react-native-ui';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 
 const Demo = () => {
   const toggleTheme = useToggleColorMode();
- 
 
-  return ( 
+  return (
     <Box p="md" bg="background">
       <Text variant="heading">Hello Theme</Text>
       <Button onPress={toggleTheme}>Toggle Theme</Button>
@@ -98,7 +98,6 @@ const TextAreaDemo = () => {
         onChangeText={setValue}
         error={error}
         style={{ width: '100%' }}
-
       />
     </Box>
   );
@@ -129,7 +128,10 @@ const FormDemo = () => {
     password: yup.string().min(6, 'Too short').required('Password required'),
   });
 
-  const { control, handleSubmit } = useForm<{ email: string; password: string }>({
+  const { control, handleSubmit } = useForm<{
+    email: string;
+    password: string;
+  }>({
     defaultValues: { email: '', password: '' },
     resolver: yupResolver(schema),
   });
@@ -137,16 +139,25 @@ const FormDemo = () => {
   return (
     <Box p="md" bg="background">
       <Text variant="heading">Form Demo</Text>
- 
 
-
-      <FormProvider
-        defaultValues={{ email: '', password: '' }}
-        schema={schema}
-      >
-        <ControlledInput  name="email" label="Email" control={control} rules={{ required: true }} style={{ width: '100%' }} />
-        <ControlledInput name="password" label="Password" control={control} rules={{ required: true }} style={{ width: '100%' }} />
-        <Button onPress={handleSubmit(data => console.log(data))}>Submit</Button>
+      <FormProvider defaultValues={{ email: '', password: '' }} schema={schema}>
+        <ControlledInput
+          name="email"
+          label="Email"
+          control={control}
+          rules={{ required: true }}
+          style={{ width: '100%' }}
+        />
+        <ControlledInput
+          name="password"
+          label="Password"
+          control={control}
+          rules={{ required: true }}
+          style={{ width: '100%' }}
+        />
+        <Button onPress={handleSubmit(data => console.log(data))}>
+          Submit
+        </Button>
       </FormProvider>
     </Box>
   );
@@ -160,20 +171,20 @@ const StepperInputDemo = () => {
     <Box p="md" bg="background">
       <Text variant="heading">Stepper Input Demo</Text>
       <StepperInput
-  label="Number of Guests"
-  value={guests}
-  onChange={(value) => {
-    setGuests(value);
-    if (value > 8) {
-      return setError("Maximum 8 guests allowed");
-    } else {
-      setError("");
-    }
-  }}
-  min={1}
-  max={10}
-  error={error}
-/>
+        label="Number of Guests"
+        value={guests}
+        onChange={value => {
+          setGuests(value);
+          if (value > 8) {
+            return setError('Maximum 8 guests allowed');
+          } else {
+            setError('');
+          }
+        }}
+        min={1}
+        max={10}
+        error={error}
+      />
     </Box>
   );
 };
@@ -198,10 +209,10 @@ const SwitchDemo = () => {
     <Box p="md" bg="background">
       <Text variant="heading">Switch Demo</Text>
       <Switch
-  label="Enable notifications"
-  value={isEnabled}
-  onChange={setIsEnabled}
-/>
+        label="Enable notifications"
+        value={isEnabled}
+        onChange={setIsEnabled}
+      />
     </Box>
   );
 };
@@ -211,11 +222,7 @@ const DatePickerDemo = () => {
   return (
     <Box p="md" bg="background">
       <Text variant="heading">Date Picker Demo</Text>
-      <DatePicker
-        label="Select Date"
-        value={date}
-        onChange={setDate}
-      />
+      <DatePicker label="Select Date" value={date} onChange={setDate} />
     </Box>
   );
 };
@@ -240,11 +247,7 @@ const TagInputDemo = () => {
   return (
     <Box p="md" bg="background">
       <Text variant="heading">Tag Input Demo</Text>
-      <TagInput
-        label="Tags"
-        tags={tags}
-        onChange={setTags}
-      />
+      <TagInput label="Tags" tags={tags} onChange={setTags} />
     </Box>
   );
 };
@@ -254,29 +257,25 @@ const OTPInputDemo = () => {
   return (
     <Box p="md" bg="background">
       <Text variant="heading">OTP Input Demo</Text>
-      <OTPInput
-        length={4}
-        value={otp}
-        onChangeText={(text) => setOtp(text)}
-      />
+      <OTPInput length={4} value={otp} onChangeText={text => setOtp(text)} />
     </Box>
   );
 };
 
-const SliderDemo = () => {  
+const SliderDemo = () => {
   const [volume, setVolume] = useState(0);
   return (
     <Box p="md">
       <Text variant="heading">Slider Demo - Value: {volume}</Text>
       <Slider
-  label="Volume"
-  value={volume}
-  onChange={setVolume}
-  min={0}
-  max={100}
-  // step={5}
-  showTooltip
-/>
+        label="Volume"
+        value={volume}
+        onChange={setVolume}
+        min={0}
+        max={100}
+        // step={5}
+        showTooltip
+      />
       <Spacer size={12} />
       {/* <Button onPress={() => setVolume(Math.floor(Math.random() * 100))}>
         Random Value
@@ -285,8 +284,29 @@ const SliderDemo = () => {
   );
 };
 
-export default function App() {
+const SlideDownToastDemo = () => {
+  const [toastVisible, setToastVisible] = useState(false);
 
+  const showSuccess = () => {
+    setToastVisible(true);
+  };
+
+  return (
+    <Box p="md" bg="background">
+      <Button onPress={showSuccess}>Show Success Toast</Button>
+
+      <SlideDownToast
+        message="Saved successfully!"
+        variant="success"
+        visible={toastVisible}
+        duration={2000}
+        onHide={() => setToastVisible(false)}
+      />
+    </Box>
+  );
+};
+
+export default function App() {
   return (
     <ThemeProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -314,6 +334,7 @@ export default function App() {
           {/* <TagInputDemo /> */}
           {/* <OTPInputDemo /> */}
           <SliderDemo />
+          <SlideDownToastDemo />
         </Container>
         <StatusBar barStyle="dark-content" />
       </SafeAreaView>

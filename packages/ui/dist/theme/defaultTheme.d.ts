@@ -6,6 +6,8 @@ export declare const defaultLightTheme: {
         muted: string;
         border: string;
         error: string;
+        success: string;
+        warning: string;
     };
     mode: "light";
     spacing: {
@@ -31,6 +33,8 @@ export declare const defaultDarkTheme: {
         muted: string;
         primary: string;
         error: string;
+        success: string;
+        warning: string;
     };
     mode: "dark";
     spacing: {

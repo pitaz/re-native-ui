@@ -6,6 +6,8 @@ export const defaultLightTheme = {
     muted: "#888",
     border: "#E0E0E0",
     error: "#FF0000",
+    success: "#4CAF50",
+    warning: "#FF9800",
   },
   mode: "light" as const,
   spacing: { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 },
