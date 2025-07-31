@@ -12,7 +12,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: "TypeScript Support",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    Svg: require("@site/static/img/typescript.svg").default,
     description: (
       <>
         Full TypeScript support with comprehensive type definitions for all
@@ -22,7 +22,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Modern Design System",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+    Svg: require("@site/static/img/modern_design.svg").default,
     description: (
       <>
         Consistent theming with customizable colors, spacing, and typography.
@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: "Accessibility First",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
+    Svg: require("@site/static/img/accessibility.svg").default,
     description: (
       <>
         WCAG compliant components with proper screen reader support, keyboard
@@ -40,11 +40,21 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
+  {
+    title: "Lightweight",
+    Svg: require("@site/static/img/lightweight.svg").default,
+    description: (
+      <>
+        Built for React Native and React Native Web, with shared components for
+        seamless cross-platform development.
+      </>
+    ),
+  },
 ];
 
 function Feature({ title, Svg, description }: FeatureItem) {
   return (
-    <div className={clsx("col col--4")}>
+    <div className={clsx("col col--3")}>
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>

@@ -1,0 +1,45 @@
+<svg
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F8EF7" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Bottom layer -->
+  <rect
+    x="32"
+    y="32"
+    width="64"
+    height="64"
+    rx="12"
+    fill="#1E3A8A"
+  />
+
+  <!-- Middle layer -->
+  <rect
+    x="16"
+    y="16"
+    width="64"
+    height="64"
+    rx="12"
+    fill="url(#grad)"
+    opacity="0.85"
+  />
+
+  <!-- Top layer -->
+  <rect
+    x="48"
+    y="48"
+    width="64"
+    height="64"
+    rx="12"
+    fill="#4F8EF7"
+    opacity="0.9"
+  />
+</svg>
