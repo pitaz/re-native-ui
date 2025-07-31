@@ -92,9 +92,37 @@ table {
 
 /* Footer styling */
 .footer {
-  background: var(--ifm-color-emphasis-100);
-  border-top: 1px solid var(--ifm-color-emphasis-300);
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  color: #6a7279;
 }
+
+[data-theme='dark'] .footer {
+  background: #2d3748;
+  border-top: 1px solid #4a5568;
+  color: #a0aec0;
+}
+
+/* Footer links styling */
+.footer a {
+  color: #13212f;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #135fb3;
+  text-decoration: underline;
+}
+
+[data-theme='dark'] .footer a {
+  color: #e2e5e8;
+}
+
+[data-theme='dark'] .footer a:hover {
+  color: #b3d9ff;
+}
+
 
 /* Breadcrumb styling */
 .breadcrumbs__item {
