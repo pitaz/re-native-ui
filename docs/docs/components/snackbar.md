@@ -14,7 +14,7 @@ A toast notification component that displays brief messages to users. The Snackb
 ## Import
 
 ```tsx
-import { Snackbar, SnackbarProvider, useSnackbar } from "react-native-ui";
+import { Snackbar, SnackbarProvider, useSnackbar } from "re-native-ui";
 ```
 
 ## Basic Usage
@@ -23,7 +23,7 @@ import { Snackbar, SnackbarProvider, useSnackbar } from "react-native-ui";
 
 ```tsx
 import React from "react";
-import { SnackbarProvider, useSnackbar, Button } from "react-native-ui";
+import { SnackbarProvider, useSnackbar, Button } from "re-native-ui";
 
 const MyComponent = () => {
   const { showSnackbar } = useSnackbar();
@@ -52,7 +52,7 @@ const App = () => {
 
 ```tsx
 import React, { useState } from "react";
-import { Snackbar, Button } from "react-native-ui";
+import { Snackbar, Button } from "re-native-ui";
 
 const MyComponent = () => {
   const [visible, setVisible] = useState(false);

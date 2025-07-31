@@ -10,7 +10,7 @@ The Slider component provides a draggable slider interface for selecting values 
 ## Basic Usage
 
 ```tsx
-import { Slider } from "react-native-ui";
+import { Slider } from "re-native-ui";
 
 const [value, setValue] = useState(50);
 

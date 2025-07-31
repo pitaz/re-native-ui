@@ -10,7 +10,7 @@ The Box component is a versatile container that provides theme-aware styling for
 ## Basic Usage
 
 ```tsx
-import { Box } from "react-native-ui";
+import { Box } from "re-native-ui";
 
 <Box>
   <Text>Content inside a box</Text>

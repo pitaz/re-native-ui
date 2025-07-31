@@ -5,14 +5,14 @@ A masonry-style grid component that displays items in a staggered layout, perfec
 ## Import
 
 ```tsx
-import { StaggeredGrid } from "react-native-ui";
+import { StaggeredGrid } from "re-native-ui";
 ```
 
 ## Basic Usage
 
 ```tsx
 import React from "react";
-import { StaggeredGrid } from "react-native-ui";
+import { StaggeredGrid } from "re-native-ui";
 
 const data = [
   { id: "1", height: 200, title: "Item 1" },

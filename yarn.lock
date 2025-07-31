@@ -5626,7 +5626,7 @@ react-native-modal-datetime-picker@^18.0.0:
     prop-types "^15.7.2"
 
 "react-native-ui@file:packages/ui":
-  version "0.0.1"
+  version "0.0.4"
   dependencies:
     "@hookform/resolvers" "^3.9.0"
     date-fns "^4.1.0"

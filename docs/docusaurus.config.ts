@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "React Native UI Library",
+  title: "Re Native UI",
   tagline: "A comprehensive UI component library for React Native",
   favicon: "img/favicon.ico",
 
@@ -22,7 +22,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   organizationName: "pitaz", // Usually your GitHub org/user name.
-  projectName: "react-native-ui-library", // Usually your repo name.
+  projectName: "react-native-ui", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -54,11 +54,11 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/react-native-ui-social-card.jpg",
     navbar: {
-      title: "React Native UI",
+      title: "Re Native UI",
       logo: {
-        alt: "React Native UI Logo",
+        alt: "Re Native UI Logo",
         src: "img/logo.svg",
       },
       items: [
@@ -69,7 +69,7 @@ const config: Config = {
           label: "Documentation",
         },
         {
-          href: "https://github.com/pitaz/react-native-ui-library",
+          href: "https://github.com/pitaz/react-native-ui",
           label: "GitHub",
           position: "right",
         },
@@ -100,16 +100,16 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/pitaz/react-native-ui-library",
+              href: "https://github.com/pitaz/react-native-ui",
             },
             {
               label: "Issues",
-              href: "https://github.com/pitaz/react-native-ui-library/issues",
+              href: "https://github.com/pitaz/react-native-ui/issues",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} React Native UI Library. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Re Native UI.`,
     },
     prism: {
       theme: prismThemes.github,

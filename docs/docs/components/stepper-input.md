@@ -10,7 +10,7 @@ The StepperInput component provides a numeric input interface with increment and
 ## Basic Usage
 
 ```tsx
-import { StepperInput } from "react-native-ui";
+import { StepperInput } from "re-native-ui";
 
 const [quantity, setQuantity] = useState(1);
 

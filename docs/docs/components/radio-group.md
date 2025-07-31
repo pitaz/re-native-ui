@@ -10,7 +10,7 @@ The RadioGroup component provides a set of radio buttons for single selection fr
 ## Basic Usage
 
 ```tsx
-import { RadioGroup } from "react-native-ui";
+import { RadioGroup } from "re-native-ui";
 
 const [selectedValue, setSelectedValue] = useState("option1");
 

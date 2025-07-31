@@ -10,7 +10,7 @@ The Divider component creates visual separation between elements with customizab
 ## Basic Usage
 
 ```tsx
-import { Divider } from "react-native-ui";
+import { Divider } from "re-native-ui";
 
 <Text>Content above</Text>
 <Divider />

@@ -1,17 +1,17 @@
 # Getting Started
 
-Welcome to the React Native UI Library! This library provides a comprehensive set of customizable components for building beautiful React Native applications with consistent design patterns and excellent developer experience.
+Welcome to Re Native UI! This library provides a comprehensive set of customizable components for building beautiful React Native applications with consistent design patterns and excellent developer experience.
 
 ## Installation
 
 Install the library using your preferred package manager:
 
 ```bash
-npm install react-native-ui
+npm install re-native-ui
 # or
-yarn add react-native-ui
+yarn add re-native-ui
 # or
-pnpm add react-native-ui
+pnpm add re-native-ui
 ```
 
 ## Basic Setup
@@ -20,7 +20,7 @@ Wrap your app with the `ThemeProvider` to enable theming and access to all compo
 
 ```tsx
 import React from "react";
-import { ThemeProvider } from "react-native-ui";
+import { ThemeProvider } from "re-native-ui";
 
 export default function App() {
   return <ThemeProvider>{/* Your app content */}</ThemeProvider>;
@@ -43,7 +43,7 @@ import {
   Stack,
   Spacer,
   Divider,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function MyApp() {
   const [email, setEmail] = useState("");
@@ -154,7 +154,7 @@ import {
   TagInput,
   DatePicker,
   MaskedInput,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function AdvancedExample() {
   const [formData, setFormData] = useState({
@@ -333,7 +333,7 @@ import {
   Stack,
   FormProvider,
   ControlledInput,
-} from "react-native-ui";
+} from "re-native-ui";
 
 export default function FormExample() {
   const {
@@ -412,7 +412,7 @@ export default function FormExample() {
 Customize the appearance of your components using the theme system:
 
 ```tsx
-import { ThemeProvider } from "react-native-ui";
+import { ThemeProvider } from "re-native-ui";
 
 const customTheme = {
   colors: {

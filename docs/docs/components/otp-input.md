@@ -10,7 +10,7 @@ The OTPInput component provides a specialized input interface for one-time passw
 ## Basic Usage
 
 ```tsx
-import { OTPInput } from "react-native-ui";
+import { OTPInput } from "re-native-ui";
 
 const [otp, setOtp] = useState("");
 

@@ -26,7 +26,7 @@ The `PasswordInput` component extends the base `Input` component to provide secu
 ## Basic Usage
 
 ```tsx
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 function MyComponent() {
   const [password, setPassword] = useState("");
@@ -60,7 +60,7 @@ The `PasswordInput` component accepts all props from React Native's `TextInput` 
 
 ```tsx
 import React, { useState } from "react";
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 function BasicPasswordInput() {
   const [password, setPassword] = useState("");
@@ -98,7 +98,7 @@ function BasicPasswordInput() {
 
 ```tsx
 import React, { useState } from "react";
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 function PasswordInputWithError() {
   const [password, setPassword] = useState("");
@@ -148,7 +148,7 @@ function PasswordInputWithError() {
 
 ```tsx
 import React, { useState } from "react";
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 function StyledPasswordInput() {
   const [password, setPassword] = useState("");
@@ -200,7 +200,7 @@ function StyledPasswordInput() {
 ```tsx
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 interface FormData {
   password: string;
@@ -236,7 +236,7 @@ function PasswordForm() {
 
 ```tsx
 import React, { useState } from "react";
-import { PasswordInput } from "react-native-ui";
+import { PasswordInput } from "re-native-ui";
 
 function ValidatedPasswordInput() {
   const [password, setPassword] = useState("");

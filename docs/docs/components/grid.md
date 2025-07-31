@@ -5,14 +5,14 @@ A responsive grid component that displays items in a customizable number of colu
 ## Import
 
 ```tsx
-import { GridList } from "react-native-ui";
+import { GridList } from "re-native-ui";
 ```
 
 ## Basic Usage
 
 ```tsx
 import React from "react";
-import { GridList } from "react-native-ui";
+import { GridList } from "re-native-ui";
 
 const data = [
   { id: "1", title: "Item 1" },
