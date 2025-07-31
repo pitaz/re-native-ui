@@ -7,6 +7,7 @@ import HomepageFeatures from "../components/HomepageFeatures";
 import Heading from "@theme/Heading";
 
 import styles from "./index.module.css";
+import GetStarted from "../components/GetStarted";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -43,6 +44,7 @@ export default function Home(): ReactNode {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <GetStarted />
       </main>
     </Layout>
   );
