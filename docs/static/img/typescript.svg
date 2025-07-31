@@ -1,0 +1,36 @@
+<svg
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="tsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F8EF7"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect
+    x="16"
+    y="16"
+    width="96"
+    height="96"
+    rx="16"
+    fill="url(#tsGrad)"
+  />
+
+  <!-- "TS" text -->
+  <text
+    x="64"
+    y="85"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="60"
+    font-weight="bold"
+    fill="#FFFFFF"
+  >
+    TS
+  </text>
+</svg>
