@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "Re Native UI",
+  title: "React Native UI",
   tagline: "A comprehensive UI component library for React Native",
   favicon: "img/favicon.ico",
 
@@ -22,7 +22,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   organizationName: "pitaz", // Usually your GitHub org/user name.
-  projectName: "react-native-ui", // Usually your repo name.
+  projectName: "re-native-ui", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -56,10 +56,10 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/react-native-ui-social-card.jpg",
     navbar: {
-      title: "Re Native UI",
+      title: "React Native UI",
       logo: {
-        alt: "Re Native UI Logo",
-        src: "img/logo.svg",
+        alt: "React Native UI Logo",
+        src: "img/logo.png",
       },
       items: [
         {
@@ -69,7 +69,7 @@ const config: Config = {
           label: "Documentation",
         },
         {
-          href: "https://github.com/pitaz/react-native-ui",
+          href: "https://github.com/pitaz/re-native-ui",
           label: "GitHub",
           position: "right",
         },
@@ -100,16 +100,16 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/pitaz/react-native-ui",
+              href: "https://github.com/pitaz/re-native-ui",
             },
             {
               label: "Issues",
-              href: "https://github.com/pitaz/react-native-ui/issues",
+              href: "https://github.com/pitaz/re-native-ui/issues",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Re Native UI.`,
+      copyright: `Copyright © ${new Date().getFullYear()} React Native UI.`,
     },
     prism: {
       theme: prismThemes.github,
