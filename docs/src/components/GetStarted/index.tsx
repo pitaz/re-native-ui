@@ -9,7 +9,7 @@ export default function GetStarted(): ReactNode {
       <div className="container">
         {/* create a grid of 2 columns */}
         <div className="row">
-          <div className="col col--6">
+          <div className={`col col--6 ${styles.headingColumn}`}>
             <Heading as="h2">Getting Started</Heading>
           </div>
           <div className="col col--6">

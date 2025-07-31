@@ -3,11 +3,13 @@
 }
 
 .getStarted h2 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 600;
   color: #000;
   text-align: center;
 }
+
+
 
 .getStarted .codeBlock {
   background: #f6f8fa;
@@ -35,4 +37,16 @@
   background: #2d3748;
   border-color: #4a5568;
   color: #e2e8f0;
+}
+
+[data-theme='dark'] .getStarted h2 {
+  color: #fff;
+}
+
+/* Center the heading vertically */
+.getStarted .headingColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
 }
